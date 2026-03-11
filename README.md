@@ -4,6 +4,8 @@ AI-first browser automation framework for Python.
 
 **Test user intent, not selectors.**
 
+**Owner:** [AbhishekPurohit1](https://github.com/AbhishekPurohit1)
+
 ## Features
 
 - 🧠 **Smart locator engine** - Find elements by intent, not brittle XPath/CSS selectors
