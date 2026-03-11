@@ -6,6 +6,24 @@ AI-first browser automation framework for Python.
 
 **Owner:** [AbhishekPurohit1](https://github.com/AbhishekPurohit1)
 
+## Problem
+
+Automation tests break because of brittle selectors.
+
+```python
+# Traditional automation - FRAGILE
+driver.find_element(By.XPATH, "//button[@class='btn-primary']")
+```
+
+## Solution
+
+Write tests using user intent.
+
+```python
+# VibeTest - ROBUST
+click("login")
+```
+
 ## Features
 
 - 🧠 **Smart locator engine** - Find elements by intent, not brittle XPath/CSS selectors
