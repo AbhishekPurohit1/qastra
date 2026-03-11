@@ -11,7 +11,7 @@ from vibetest.engine.fingerprint import get_fingerprint
 from vibetest.utils.history import save_fingerprint, load_fingerprint
 
 # Candidate elements: clickable and focusable (spec)
-CANDIDATE_SELECTOR = "button, a, input, textarea"
+CANDIDATE_SELECTOR = "button, a, input, textarea, [type=submit], [type=button]"
 
 
 def _smart_find(page, label):

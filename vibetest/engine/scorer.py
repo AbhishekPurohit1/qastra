@@ -48,6 +48,22 @@ def score_element(element, label):
     except Exception:
         pass
 
+    # 3.5. Name attribute — for form inputs = +35
+    try:
+        name = element.get_attribute("name")
+        if name and label.lower() in name.lower():
+            score += 35
+    except Exception:
+        pass
+
+    # 3.6. ID attribute — exact match = +45
+    try:
+        element_id = element.get_attribute("id")
+        if element_id and label.lower() == element_id.lower():
+            score += 45
+    except Exception:
+        pass
+
     # 4. Element type — button, a, input, textarea = +20
     try:
         tag = (element.evaluate("e => e.tagName") or "").lower()

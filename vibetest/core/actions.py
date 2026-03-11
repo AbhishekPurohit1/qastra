@@ -9,6 +9,9 @@ def open_page(url):
         url (str): The URL to navigate to
     """
     browser.open(url)
+    # Wait for page to load and be ready
+    if browser.page:
+        browser.page.wait_for_load_state("networkidle", timeout=10000)
 
 
 def click(label):
