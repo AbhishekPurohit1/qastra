@@ -80,6 +80,21 @@ vibetest run tests --parallel 8       # Parallel with 8 workers
 # 7x faster execution!
 ```
 
+### **Test Recorder**
+```python
+# CLI Commands
+vibetest record https://example.com
+vibetest record https://example.com --duration 120
+vibetest record https://example.com --output my_test.py
+
+# Workflow:
+# 1. Browser opens automatically
+# 2. Click around, type in forms
+# 3. Recorder captures actions
+# 4. Generates test file automatically
+# 5. Run: python recorded_test.py
+```
+
 ### **Smart Assertions**
 ```python
 expect_page_title("Dashboard")
@@ -103,6 +118,7 @@ wait_for_element("profile", timeout=5000)
 - 🌐 **Cross-browser support** - Chrome, Firefox, Safari, Edge
 - 🖥️ **CLI test runner** - Run tests from command line
 - ⚡ **Parallel execution** - Run multiple tests simultaneously for 7x speed improvement
+- 🎬 **Test recorder** - Turn manual browser actions into automated tests
 - 🛡️ **Timeout protection** - Prevent hanging tests with 5-minute timeouts
 - 📊 **Performance metrics** - Detailed execution reporting and time savings
 - ⚡ **Built on Playwright** - Reliable browser automation under the hood

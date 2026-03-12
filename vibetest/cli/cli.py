@@ -51,6 +51,28 @@ def parallel(folder, workers):
 
 
 @cli.command()
+@click.argument("url")
+@click.option("--duration", default=60, help="Recording duration in seconds (default: 60)")
+@click.option("--output", default="recorded_test.py", help="Output test file name (default: recorded_test.py)")
+def record(url, duration, output):
+    """Record browser interactions and generate automated tests.
+    
+    Examples:
+        vibetest record https://example.com
+        vibetest record https://example.com --duration 120
+        vibetest record https://example.com --output my_test.py
+    """
+    from vibetest.recorder.recorder import start_recorder
+    
+    print("🎬 Starting VibeTest Recorder...")
+    print(f"🌐 URL: {url}")
+    print(f"⏱️  Duration: {duration}s")
+    print(f"📝 Output: {output}")
+    
+    start_recorder(url, duration=duration, output_file=output)
+
+
+@cli.command()
 @click.argument("folder")
 def sequential(folder):
     """Run tests in sequential mode.
