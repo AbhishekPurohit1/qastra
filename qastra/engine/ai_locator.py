@@ -1,5 +1,5 @@
 """
-AI-Powered Intent Locator Engine - The first real AI feature for VibeTest.
+AI-Powered Intent Locator Engine - The first real AI feature for Qastra.
 
 This goes beyond smart locators to true AI understanding:
 - Natural language processing
@@ -10,8 +10,8 @@ This goes beyond smart locators to true AI understanding:
 
 import re
 from typing import List, Dict, Any
-from vibetest.engine.scorer import score_element
-from vibetest.engine.locator_engine import find_element
+from qastra.engine.scorer import score_element
+from qastra.engine.locator_engine import find_element
 
 class AILocator:
     """AI-powered locator that understands natural language intent."""
@@ -228,7 +228,7 @@ class AILocator:
         print(f"🤖 AI Intent: {intent}")
         
         # Get all candidate elements
-        from vibetest.engine.locator_engine import CANDIDATE_SELECTOR
+        from qastra.engine.locator_engine import CANDIDATE_SELECTOR
         elements = page.query_selector_all(CANDIDATE_SELECTOR)
         
         if not elements:

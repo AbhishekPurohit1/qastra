@@ -1,9 +1,9 @@
-"""End-to-End testing framework for VibeTest."""
+"""End-to-End testing framework for Qastra."""
 
 import time
-from vibetest.core.actions import open_page, click, type_into
-from vibetest.core.assertions import expect
-from vibetest.core.cross_browser import CrossBrowser, BrowserType, cross_browser_test
+from qastra.core.actions import open_page, click, type_into
+from qastra.core.assertions import expect
+from qastra.core.cross_browser import CrossBrowser, BrowserType, cross_browser_test
 
 class E2ETest:
     def __init__(self, name, base_url=None):

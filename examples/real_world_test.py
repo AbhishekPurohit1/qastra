@@ -1,10 +1,10 @@
-"""Real-world login test for VibeTest."""
+"""Real-world login test for Qastra."""
 
-from vibetest import *
+from qastra import *
 
-test("Real World Login Test")
+qastra("Real World Login Test")
 
-print("🚀 Testing VibeTest with real-world login environment...")
+print("🚀 Testing Qastra with real-world login environment...")
 print("Testing OrangeHRM - a real HR management system")
 
 # Navigate to real login page
@@ -16,5 +16,5 @@ type_into("password", "admin123")
 click("Login")
 
 print("✅ Real-world login completed successfully!")
-print("🎯 VibeTest works in production environments!")
+print("🎯 Qastra works in production environments!")
 print("� Smart locators found: username field, password field, login button")

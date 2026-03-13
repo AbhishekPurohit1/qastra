@@ -1,9 +1,9 @@
 """Parallel test 2 - Medium test."""
 
-from vibetest import *
+from qastra import *
 import time
 
-test("Parallel Test 2 - Medium")
+qastra("Parallel Test 2 - Medium")
 
 print("🚀 Running parallel test 2...")
 time.sleep(3)  # Simulate test work

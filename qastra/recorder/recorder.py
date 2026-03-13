@@ -1,7 +1,7 @@
 """
-VibeTest Recorder - Turn manual browser actions into automated tests.
+Qastra Recorder - Turn manual browser actions into automated tests.
 
-This module captures user interactions and generates VibeTest test code automatically.
+This module captures user interactions and generates Qastra test code automatically.
 """
 
 import os
@@ -10,7 +10,7 @@ from datetime import datetime
 from playwright.sync_api import sync_playwright
 
 
-class VibeTestRecorder:
+class QastraRecorder:
     """Main recorder class that captures browser actions and generates tests."""
     
     def __init__(self):
@@ -96,14 +96,14 @@ class VibeTestRecorder:
         """Generate a Python test file from recorded actions."""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
-        content = f'''"""Auto-generated test by VibeTest Recorder
+        content = f'''"""Auto-generated test by Qastra Recorder
 Generated on: {timestamp}
 URL: {self.start_url}
 """
 
-from vibetest import *
+from qastra import *
 
-test("Recorded Test")
+qastra("Recorded Test")
 
 # Navigate to starting page
 open_page("{self.start_url}")
@@ -133,23 +133,23 @@ print("✅ Recorded test executed successfully!")
 
 
 def start_recorder(url, duration=60, output_file="recorded_test.py"):
-    """Start the VibeTest recorder.
+    """Start Qastra recorder.
     
     Args:
         url (str): Starting URL to record
         duration (int): Recording duration in seconds (default: 60)
         output_file (str): Output test file name (default: "recorded_test.py")
     """
-    recorder = VibeTestRecorder()
+    recorder = QastraRecorder()
     recorder.start_url = url
     recorder.recording_start_time = time.time()
     
-    print("🎬 VibeTest Recorder Starting...")
+    print("🎬 Qastra Recorder Starting...")
     print(f"🌐 URL: {url}")
     print(f"⏱️  Duration: {duration} seconds")
     print(f"📝 Output: {output_file}")
     print("=" * 50)
-    print("🎯 Interact with the page - your actions will be recorded!")
+    print("🎯 Interact with page - your actions will be recorded!")
     print("⌨️  Click buttons, type in forms, navigate around")
     print("🛑 Recording will stop automatically after timeout")
     print("=" * 50)
@@ -159,7 +159,7 @@ def start_recorder(url, duration=60, output_file="recorded_test.py"):
         browser = p.chromium.launch(headless=False)
         context = browser.new_context(
             viewport={"width": 1280, "height": 720},
-            user_agent="VibeTest Recorder"
+            user_agent="Qastra Recorder"
         )
         page = context.new_page()
         
@@ -223,7 +223,7 @@ def start_recorder(url, duration=60, output_file="recorded_test.py"):
 
 def record_interactive(url):
     """Interactive recording mode with user control."""
-    print("🎬 VibeTest Interactive Recorder")
+    print("🎬 Qastra Interactive Recorder")
     print("Commands during recording:")
     print("  • Press Ctrl+C to stop recording early")
     print("  • Close browser to finish recording")

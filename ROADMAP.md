@@ -1,7 +1,7 @@
 # VibeTest Roadmap
 
 ## v0.2 - Test Recorder
-- `vibetest record https://example.com` command
+- `qastra record https://example.com` command
 - Automatic test generation from user actions
 - Export to VibeTest DSL
 
@@ -30,4 +30,4 @@
 
 ## Contributing
 
-Want to help build the future of test automation? Check our [Issues](https://github.com/AbhishekPurohit1/vibetest/issues) and pick up a `good first issue`!
+Want to help build the future of test automation? Check our [Issues](https://github.com/AbhishekPurohit1/qastra/issues) and pick up a `good first issue`!

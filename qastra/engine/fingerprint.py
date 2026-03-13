@@ -1,4 +1,4 @@
-"""Element fingerprinting for VibeTest self-healing locators."""
+"""Element fingerprinting for Qastra self-healing locators."""
 
 
 def get_fingerprint(element):

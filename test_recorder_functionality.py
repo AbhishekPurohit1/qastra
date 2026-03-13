@@ -1,10 +1,10 @@
 """Test the recorder functionality without opening browser."""
 
-from vibetest.recorder.recorder import VibeTestRecorder
+from qastra.recorder.recorder import QastraRecorder
 
 def test_recorder_normalization():
     """Test text normalization functionality."""
-    recorder = VibeTestRecorder()
+    recorder = QastraRecorder()
     
     # Test text normalization
     test_cases = [
@@ -59,7 +59,7 @@ def test_recorder_normalization():
         with open(test_file, 'r') as f:
             content = f.read()
             print(f"   📏 File size: {len(content)} characters")
-            print(f"   ✅ Contains 'from vibetest import *': {'from vibetest import *' in content}")
+            print(f"   ✅ Contains 'from qastra import *': {'from qastra import *' in content}")
             print(f"   ✅ Contains test function: {'test(' in content}")
             print(f"   ✅ Contains open_page: {'open_page(' in content}")
             print(f"   ✅ Contains actions: {len(recorder.actions) > 0}")

@@ -1,8 +1,8 @@
-"""Test error handling in VibeTest."""
+"""Test error handling in Qastra."""
 
-from vibetest import *
+from qastra import *
 
-test("Error Handling Test")
+qastra("Error Handling Test")
 
 try:
     # This should fail gracefully

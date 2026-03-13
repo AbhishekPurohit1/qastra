@@ -1,11 +1,11 @@
-"""Setup script for vibetest."""
+"""Setup script for qastra."""
 from setuptools import setup, find_packages
 
 setup(
-    name="vibetest",
+    name="qastra",
     version="0.1.0",
     description="AI-first browser automation framework for Python",
-    long_description="VibeTest - Test user intent, not selectors. Smart locator engine with self-healing elements.",
+    long_description="Qastra - Test user intent, not selectors. Smart locator engine with self-healing elements.",
     packages=find_packages(),
     python_requires=">=3.8",
     install_requires=[
@@ -15,14 +15,14 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "vibetest=vibetest.cli.cli:cli",
+            "qastra=qastra.cli.cli:cli",
         ],
     },
     author="AbhishekPurohit1",
     author_email="Abhishekpurohit444@gmail.com",
     maintainer="AbhishekPurohit1",
     maintainer_email="Abhishekpurohit444@gmail.com",
-    url="https://github.com/AbhishekPurohit1/vibetest",
+    url="https://github.com/AbhishekPurohit1/qastra",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

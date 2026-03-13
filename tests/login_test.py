@@ -1,8 +1,8 @@
-"""Example login test using VibeTest DSL."""
+"""Example login test using Qastra DSL."""
 
-from vibetest import *
+from qastra import *
 
-test("Login Flow Test")
+qastra("Login Flow Test")
 
 print("Opening example.com...")
 open_page("https://example.com")

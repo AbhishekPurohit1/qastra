@@ -1,11 +1,11 @@
-"""Auto-generated test by VibeTest Recorder
-Generated on: 2026-03-12 11:21:18
+"""Auto-generated test by Qastra Recorder
+Generated on: 2026-03-13 09:41:32
 URL: https://example.com
 """
 
-from vibetest import *
+from qastra import *
 
-test("Recorded Test")
+qastra("Recorded Test")
 
 # Navigate to starting page
 open_page("https://example.com")

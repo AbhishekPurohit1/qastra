@@ -2,6 +2,7 @@ import os
 import subprocess
 from multiprocessing import Pool
 import time
+from qastra.reporter.reporter import generate_report
 
 
 def run_single_test(test_file_path):
@@ -17,7 +18,7 @@ def run_single_test(test_file_path):
     file_name = os.path.basename(test_file_path)
     
     # Set up environment for this test
-    env = {**os.environ, "PYTHONPATH": "/Users/apple/Desktop/All Data/VibeTest"}
+    env = {**os.environ, "PYTHONPATH": "/Users/apple/Desktop/All Data/Qastra"}
     
     try:
         result = subprocess.run(
@@ -66,7 +67,7 @@ def run_tests_parallel(folder, workers=4):
         folder (str): Path to the folder containing test files
         workers (int): Number of parallel workers
     """
-    print(f"\n[VibeTest] Running tests in PARALLEL mode")
+    print(f"\n[Qastra] Running tests in PARALLEL mode")
     print(f"📁 Folder: {folder}")
     print(f"🔧 Workers: {workers}")
     print("=" * 60)
@@ -78,7 +79,7 @@ def run_tests_parallel(folder, workers=4):
             test_files.append(os.path.join(folder, file))
     
     if not test_files:
-        print("[VibeTest] No test files found!")
+        print("[Qastra] No test files found!")
         return
     
     print(f"📋 Found {len(test_files)} test files")
@@ -91,7 +92,8 @@ def run_tests_parallel(folder, workers=4):
     with Pool(workers) as pool:
         results = pool.map(run_single_test, test_files)
     
-    total_time = time.time() - start_time
+    end_time = time.time()
+    total_time = end_time - start_time
     
     # Process and display results
     passed = 0
@@ -141,6 +143,13 @@ def run_tests_parallel(folder, workers=4):
         estimated_sequential_time = sum(r["execution_time"] for r in results)
         time_saved = estimated_sequential_time - total_time
         print(f"   ⚡ Time saved: ~{time_saved:.1f}s ({(time_saved/estimated_sequential_time*100):.0f}% faster)")
+    
+    # Generate HTML report
+    print("\n📊 Generating HTML report...")
+    try:
+        generate_report(results, start_time, end_time, auto_open=True)
+    except Exception as e:
+        print(f"⚠️ Could not generate HTML report: {e}")
 
 
 def run_tests(folder):
@@ -149,7 +158,7 @@ def run_tests(folder):
     Args:
         folder (str): Path to the folder containing test files
     """
-    print(f"\n[VibeTest] Running tests in SEQUENTIAL mode")
+    print(f"\n[Qastra] Running tests in SEQUENTIAL mode")
     print(f"📁 Folder: {folder}")
     print("=" * 60)
     
@@ -159,7 +168,7 @@ def run_tests(folder):
             test_files.append(file)
     
     if not test_files:
-        print("[VibeTest] No test files found!")
+        print("[Qastra] No test files found!")
         return
     
     print(f"📋 Found {len(test_files)} test files")
@@ -167,9 +176,11 @@ def run_tests(folder):
     print("-" * 60)
     
     start_time = time.time()
+    results = []
     
     for test_file in test_files:
         result = run_single_test(os.path.join(folder, test_file))
+        results.append(result)
         
         status_icon = ""
         if result["status"] == "passed":
@@ -188,20 +199,34 @@ def run_tests(folder):
         if result["error"] and result["status"] == "failed":
             print(f"   Error: {result['error'][:100]}...")
     
-    total_time = time.time() - start_time
+    end_time = time.time()
+    total_time = end_time - start_time
+    
+    # Summary
+    passed = len([r for r in results if r["status"] == "passed"])
+    failed = len([r for r in results if r["status"] != "passed"])
     
     print("-" * 60)
     print(f"📈 SUMMARY:")
     print(f"   Total: {len(test_files)} tests")
+    print(f"   ✅ Passed: {passed}")
+    print(f"   ❌ Failed: {failed}")
     print(f"   ⏱️  Total time: {total_time:.1f}s")
     print(f"   🐌 Sequential execution")
+    
+    # Generate HTML report
+    print("\n📊 Generating HTML report...")
+    try:
+        generate_report(results, start_time, end_time, auto_open=True)
+    except Exception as e:
+        print(f"⚠️ Could not generate HTML report: {e}")
 
 
-def test(name):
+def qastra(name):
     """Simple DSL entry to label a test.
     
     Args:
         name (str): Test name/description
     """
-    print(f"[VibeTest] Test: {name}")
+    print(f"[Qastra] Test: {name}")
 

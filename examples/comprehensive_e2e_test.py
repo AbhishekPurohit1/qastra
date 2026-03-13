@@ -1,6 +1,6 @@
 """Comprehensive E2E test suite - Best in class testing framework."""
 
-from vibetest import *
+from qastra import *
 from vibetest.core.e2e import create_e2e_test, UserJourney
 from vibetest.core.cross_browser import cross_browser_test, BrowserType
 from vibetest.core.assertions import expect, expect_page_title, expect_url, wait_for_element
@@ -126,7 +126,7 @@ def test_responsive_design():
     test.run_all()
 
 if __name__ == "__main__":
-    print("🌟 VibeTest - Best in Class E2E Testing Framework")
+    print("🌟 Qastra - Best in Class E2E Testing Framework")
     print("=" * 70)
     
     # Run all test suites
@@ -140,5 +140,5 @@ if __name__ == "__main__":
     
     print("\n" + "=" * 70)
     print("🎉 ALL E2E TESTS COMPLETED!")
-    print("🚀 VibeTest - Production Ready Framework")
+    print("🚀 Qastra - Production Ready Framework")
     print("🌐 Cross-browser | 📱 Responsive | ⚡ Performance | ✨ Advanced")

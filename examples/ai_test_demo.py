@@ -1,11 +1,11 @@
-"""AI-Powered Testing Demo - First Real AI Features in VibeTest."""
+"""AI-Powered Testing Demo - First Real AI Features in Qastra."""
 
-from vibetest import *
+from qastra import *
 from vibetest.engine.ai_locator import find_element_ai
 
-test("AI-Powered Intent Testing")
+qastra("AI-Powered Intent Testing")
 
-print("🤖 VibeTest AI - First Real AI Features")
+print("🤖 Qastra AI - First Real AI Features")
 print("=" * 50)
 
 # Test 1: Natural Language Understanding
@@ -103,7 +103,7 @@ print("   🚧 Self-Healing (Future)")
 print("   🚧 Test Generation (Future)")
 
 print("\n" + "=" * 50)
-print("🤖 VibeTest AI - First Step Toward True AI Testing!")
+print("🤖 Qastra AI - First Step Toward True AI Testing!")
 print("🧠 Smart Automation → AI-Powered Automation")
 print("🎯 Current: Intent-based locators with NLP")
 print("🚀 Next: LLM integration and self-healing")

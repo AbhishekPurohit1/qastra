@@ -1,12 +1,12 @@
-"""VibeTest Showcase - Best in Class E2E Testing Framework."""
+"""Qastra Showcase - Best in Class E2E Testing Framework."""
 
-from vibetest import *
+from qastra import *
 from vibetest.core.cross_browser import BrowserType, CrossBrowser
 from vibetest.core.e2e import create_e2e_test
 
-test("VibeTest Showcase - Complete E2E Testing")
+qastra("Qastra Showcase - Complete E2E Testing")
 
-print("🌟 VibeTest - Making E2E Testing Simple & Powerful")
+print("🌟 Qastra - Making E2E Testing Simple & Powerful")
 print("=" * 60)
 
 # 1. Smart Locators in Action
@@ -52,7 +52,7 @@ duration = time.time() - start
 print(f"✅ Fast execution: {duration:.2f} seconds")
 
 print("\n" + "=" * 60)
-print("🎯 VibeTest Features:")
+print("🎯 Qastra Features:")
 print("   🧠 Smart Locators - Find by intent, not selectors")
 print("   🔄 Self-Healing - Adapts to UI changes")
 print("   🌐 Cross-Browser - Chrome, Firefox, Safari, Edge")
@@ -62,5 +62,5 @@ print("   📱 Responsive Testing - Multiple viewports")
 print("   ⚡ Performance - Fast and efficient")
 print("   🎯 Production Ready - Real-world tested")
 
-print("\n🌟 VibeTest - Best in Class E2E Testing Framework!")
+print("\n🌟 Qastra - Best in Class E2E Testing Framework!")
 print("🚀 Making browser automation intelligent and accessible!")

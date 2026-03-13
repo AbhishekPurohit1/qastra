@@ -1,14 +1,14 @@
 """
-VibeTest locator engine.
+Qastra locator engine.
 
 Flow:
 1. Smart locator scoring (intent-based).
 2. If not found → try self-healing based on saved fingerprints.
 """
 
-from vibetest.engine.scorer import score_element
-from vibetest.engine.fingerprint import get_fingerprint
-from vibetest.utils.history import save_fingerprint, load_fingerprint
+from qastra.engine.scorer import score_element
+from qastra.engine.fingerprint import get_fingerprint
+from qastra.utils.history import save_fingerprint, load_fingerprint
 
 # Candidate elements: clickable and focusable (spec)
 CANDIDATE_SELECTOR = "button, a, input, textarea, [type=submit], [type=button]"

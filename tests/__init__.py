@@ -1,1 +1,1 @@
-"""Tests for vibetest."""
+"""Tests for qastra."""

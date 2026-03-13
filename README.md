@@ -1,4 +1,4 @@
-# VibeTest
+# Qastra
 
 AI-first browser automation framework for Python.
 
@@ -20,7 +20,7 @@ driver.find_element(By.XPATH, "//button[@class='btn-primary']")
 Write tests using user intent.
 
 ```python
-# VibeTest - ROBUST
+# Qastra - ROBUST
 click("login")
 ```
 
@@ -70,9 +70,9 @@ test_suite.run_all()
 ### **Parallel Test Execution**
 ```python
 # CLI Commands
-vibetest run tests                    # Sequential execution
-vibetest run tests --parallel 4       # Parallel with 4 workers
-vibetest run tests --parallel 8       # Parallel with 8 workers
+qastra run tests                    # Sequential execution
+qastra run tests --parallel 4       # Parallel with 4 workers
+qastra run tests --parallel 8       # Parallel with 8 workers
 
 # Performance: 100 tests @ 30s each
 # Sequential: 50 minutes
@@ -80,12 +80,27 @@ vibetest run tests --parallel 8       # Parallel with 8 workers
 # 7x faster execution!
 ```
 
+### **HTML Test Reports**
+```python
+# CLI Commands - Reports generated automatically
+qastra run tests                    # Sequential + HTML report
+qastra run tests --parallel 4       # Parallel + HTML report
+
+# Features:
+- 📊 Professional HTML dashboard
+- 🌐 Auto-opens in browser (macOS)
+- ✅ Pass/Fail status with details
+- ⏱️ Execution timing and statistics
+- 📱 Mobile-responsive design
+- 🔍 Expandable error details
+```
+
 ### **Test Recorder**
 ```python
 # CLI Commands
-vibetest record https://example.com
-vibetest record https://example.com --duration 120
-vibetest record https://example.com --output my_test.py
+qastra record https://example.com
+qastra record https://example.com --duration 120
+qastra record https://example.com --output my_test.py
 
 # Workflow:
 # 1. Browser opens automatically
@@ -119,14 +134,15 @@ wait_for_element("profile", timeout=5000)
 - 🖥️ **CLI test runner** - Run tests from command line
 - ⚡ **Parallel execution** - Run multiple tests simultaneously for 7x speed improvement
 - 🎬 **Test recorder** - Turn manual browser actions into automated tests
+- 📊 **HTML reports** - Professional test dashboard with auto-open
 - 🛡️ **Timeout protection** - Prevent hanging tests with 5-minute timeouts
-- 📊 **Performance metrics** - Detailed execution reporting and time savings
+- 📱 **Mobile-responsive** - Reports work on all devices
 - ⚡ **Built on Playwright** - Reliable browser automation under the hood
 
 ## Example
 
 ```python
-from vibetest import *
+from qastra import *
 
 test("Login Test")
 
@@ -143,7 +159,7 @@ expect("Dashboard")
 ## Installation
 
 ```bash
-pip install vibetest
+pip install qastra
 ```
 
 ## Quick Start
@@ -155,7 +171,7 @@ playwright install
 
 2. Create a test file `test_login.py`:
 ```python
-from vibetest import *
+from qastra import *
 
 test("Login Flow")
 
@@ -165,39 +181,39 @@ click("More information")
 
 3. Run your test:
 ```bash
-vibetest run test_login.py
+qastra run test_login.py
 ```
 
 ## CLI Usage
 
 ```bash
 # Run single test
-vibetest run test_login.py
+qastra run test_login.py
 
 # Run all tests in folder
-vibetest run tests/
+qastra run tests/
 
 # Run examples
-vibetest run examples/
+qastra run examples/
 ```
 
-## Why VibeTest?
+## Why Qastra?
 
 **Traditional automation:**
 ```python
 driver.find_element(By.XPATH, "//button[@class='btn-primary']")
 ```
 
-**VibeTest:**
+**Qastra:**
 ```python
 click("login")
 ```
 
-VibeTest understands user intent rather than forcing you to write brittle selectors. When the UI changes, VibeTest automatically heals and finds the right elements.
+Qastra understands user intent rather than forcing you to write brittle selectors. When the UI changes, Qastra automatically heals and finds the right elements.
 
 ## Documentation
 
-- [API Reference](https://github.com/vibetest/vibetest/wiki)
+- [API Reference](https://github.com/qastra/qastra/wiki)
 - [Examples](examples/)
 - [Contributing Guide](CONTRIBUTING.md)
 
@@ -211,4 +227,4 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 ---
 
-**VibeTest v0.1** - Initial demo release
+**Qastra v0.1** - Initial demo release

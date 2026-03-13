@@ -1,18 +1,18 @@
-"""VibeTest Ultimate Showcase - Best in Class E2E Testing Framework."""
+"""Qastra Ultimate Showcase - Best in Class E2E Testing Framework."""
 
-from vibetest import *
+from qastra import *
 from vibetest.core.e2e import create_e2e_test, UserJourney
 from vibetest.core.assertions import wait_for_element
 
-test("VibeTest Ultimate Showcase")
+qastra("Qastra Ultimate Showcase")
 
-print("🌟 VibeTest - Best in Class E2E Testing Framework")
+print("🌟 Qastra - Best in Class E2E Testing Framework")
 print("=" * 65)
 
 # 1. Smart Locators - No Brittle Selectors
 print("\n🧠 1. Smart Locators - Find by Intent:")
 print("   Traditional: driver.find_element(By.XPATH, '//input[@name=\"username\"]')")
-print("   VibeTest:  type_into('username', 'admin')")
+print("   Qastra:  type_into('username', 'admin')")
 print("   ✅ Finding elements by user intent!")
 
 open_page("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
@@ -110,13 +110,13 @@ for capability in capabilities:
     print(f"   {capability}")
 
 print("\n" + "=" * 65)
-print("🏆 VibeTest - Best in Class E2E Testing Framework")
+print("🏆 Qastra - Best in Class E2E Testing Framework")
 print("🌟 Making browser automation intelligent and accessible!")
 print("🚀 From simple scripts to comprehensive E2E test suites!")
 print("🎯 Test user intent, not brittle selectors!")
 
 # Final Success Message
 print("\n🎉 ALL FEATURES DEMONSTRATED SUCCESSFULLY!")
-print("💪 VibeTest is ready for production use!")
+print("💪 Qastra is ready for production use!")
 print("🌍 Tested with real-world applications!")
 print("🔧 Framework is complete and robust!")

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-HISTORY_FILE = Path("vibetest_history.json")
+HISTORY_FILE = Path("qastra_history.json")
 
 
 def _load_history():

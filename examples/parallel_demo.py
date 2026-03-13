@@ -1,11 +1,11 @@
 """Parallel Execution Demo - Show performance improvements."""
 
-from vibetest import *
+from qastra import *
 import time
 
-test("Parallel Performance Demo")
+qastra("Parallel Performance Demo")
 
-print("🚀 VibeTest Parallel Execution Demo")
+print("🚀 Qastra Parallel Execution Demo")
 print("=" * 50)
 
 # Create multiple test scenarios to demonstrate parallel benefits
@@ -54,4 +54,4 @@ print("   ✅ Performance metrics and time savings")
 print("   ✅ Error handling and crash protection")
 
 print("\n🚀 Production Ready!")
-print("   VibeTest parallel execution scales to hundreds of tests!")
+print("   Qastra parallel execution scales to hundreds of tests!")

@@ -2,12 +2,12 @@ import os
 import subprocess
 
 import click
-from vibetest.core.runner import run_tests, run_tests_parallel
+from qastra.core.runner import run_tests, run_tests_parallel
 
 
 @click.group()
 def cli():
-    """VibeTest command-line interface."""
+    """Qastra command-line interface."""
     pass
 
 
@@ -18,14 +18,14 @@ def run(path, parallel):
     """Run a single file or all .py files in a folder.
     
     Examples:
-        vibetest run tests                    # Sequential execution
-        vibetest run tests --parallel 4       # Parallel execution with 4 workers
-        vibetest run examples/demo_test.py    # Single file
+        qastra run tests                    # Sequential execution
+        qastra run tests --parallel 4       # Parallel execution with 4 workers
+        qastra run examples/demo_test.py    # Single file
     """
     if os.path.isfile(path):
         # Run single file
-        print(f"[VibeTest] Running single file: {path}")
-        env = {**os.environ, "PYTHONPATH": "/Users/apple/Desktop/All Data/VibeTest"}
+        print(f"[Qastra] Running single file: {path}")
+        env = {**os.environ, "PYTHONPATH": "/Users/apple/Desktop/All Data/Qastra"}
         result = subprocess.run(["python3", path], capture_output=True, text=True, env=env)
         print(result.stdout)
         if result.stderr:
@@ -45,7 +45,7 @@ def parallel(folder, workers):
     """Run tests in parallel mode.
     
     Example:
-        vibetest parallel tests --workers 8
+        qastra parallel tests --workers 8
     """
     run_tests_parallel(folder, workers=workers)
 
@@ -58,13 +58,13 @@ def record(url, duration, output):
     """Record browser interactions and generate automated tests.
     
     Examples:
-        vibetest record https://example.com
-        vibetest record https://example.com --duration 120
-        vibetest record https://example.com --output my_test.py
+        qastra record https://example.com
+        qastra record https://example.com --duration 120
+        qastra record https://example.com --output my_test.py
     """
-    from vibetest.recorder.recorder import start_recorder
+    from qastra.recorder.recorder import start_recorder
     
-    print("🎬 Starting VibeTest Recorder...")
+    print("🎬 Starting Qastra Recorder...")
     print(f"🌐 URL: {url}")
     print(f"⏱️  Duration: {duration}s")
     print(f"📝 Output: {output}")
@@ -78,7 +78,7 @@ def sequential(folder):
     """Run tests in sequential mode.
     
     Example:
-        vibetest sequential tests
+        qastra sequential tests
     """
     run_tests(folder)
 

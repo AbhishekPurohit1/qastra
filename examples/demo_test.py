@@ -1,10 +1,10 @@
-"""VibeTest Demo Example - Perfect for presentations."""
+"""Qastra Demo Example - Perfect for presentations."""
 
-from vibetest import *
+from qastra import *
 
-test("VibeTest Demo")
+qastra("Qastra Demo")
 
-print("🚀 Starting VibeTest Demo...")
+print("🚀 Starting Qastra Demo...")
 print("This will open a browser and navigate to example.com")
 
 # Navigate to a simple website
@@ -16,9 +16,9 @@ print("✅ Page loaded successfully!")
 click("More information")
 
 print("✅ Successfully clicked 'More information' link!")
-print("🎉 Demo completed - VibeTest works!")
+print("🎉 Demo completed - Qastra works!")
 
 # You can add more steps like:
-# type_into("search", "VibeTest")
+# type_into("search", "Qastra")
 # click("search button")
 # expect("search results")

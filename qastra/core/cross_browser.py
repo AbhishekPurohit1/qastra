@@ -1,7 +1,7 @@
-"""Cross-browser support for VibeTest."""
+"""Cross-browser support for Qastra."""
 
 from enum import Enum
-from vibetest.browser.browser import browser
+from qastra.browser.browser import browser
 
 class BrowserType(Enum):
     CHROME = "chromium"

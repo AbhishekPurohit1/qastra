@@ -1,10 +1,10 @@
 """
-Smart Locator Scoring — the brain of VibeTest.
+Smart Locator Scoring — the brain of Qastra.
 Scores elements by: text, aria-label, placeholder, element type, visibility.
 Formula: ELEMENT SCORE = text_score + aria_score + placeholder_score + attribute_score + visibility_score
 """
 
-# Spec weights (exact from VibeTest design)
+# Spec weights (exact from Qastra design)
 SCORE_EXACT_TEXT = 50
 SCORE_PARTIAL_TEXT = 30
 SCORE_ARIA_LABEL = 40

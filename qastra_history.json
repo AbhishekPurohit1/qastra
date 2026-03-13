@@ -1,0 +1,68 @@
+{
+  "Learn more": {
+    "tag": "A",
+    "text": "Learn more",
+    "class": null,
+    "id": null
+  },
+  "More information": {
+    "tag": "A",
+    "text": "Learn more",
+    "class": null,
+    "id": null
+  },
+  "username": {
+    "tag": "INPUT",
+    "text": "",
+    "class": "oxd-input oxd-input--focus",
+    "id": null
+  },
+  "password": {
+    "tag": "INPUT",
+    "text": "",
+    "class": "oxd-input oxd-input--active",
+    "id": null
+  },
+  "Login": {
+    "tag": "BUTTON",
+    "text": "Login",
+    "class": "oxd-button oxd-button--medium oxd-button--main orangehrm-login-button",
+    "id": null
+  },
+  "register": {
+    "tag": "INPUT",
+    "text": "",
+    "class": "oxd-input oxd-input--focus",
+    "id": null
+  },
+  "first_name": {
+    "tag": "INPUT",
+    "text": "",
+    "class": "oxd-input oxd-input--focus",
+    "id": null
+  },
+  "last_name": {
+    "tag": "INPUT",
+    "text": "",
+    "class": "oxd-input oxd-input--focus",
+    "id": null
+  },
+  "email": {
+    "tag": "INPUT",
+    "text": "",
+    "class": "oxd-input oxd-input--focus",
+    "id": null
+  },
+  "submit": {
+    "tag": "INPUT",
+    "text": "",
+    "class": "oxd-input oxd-input--focus",
+    "id": null
+  },
+  "login": {
+    "tag": "A",
+    "text": "Learn more",
+    "class": null,
+    "id": null
+  }
+}

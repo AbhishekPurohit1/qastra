@@ -1,8 +1,8 @@
-"""Test case management for VibeTest DSL."""
+"""Test case management for Qastra DSL."""
 
 current_test = None
 
-def test(name):
+def qastra(name):
     """Define a test case with a name.
     
     Args:
@@ -10,5 +10,5 @@ def test(name):
     """
     global current_test
     current_test = name
-    print(f"\n[VibeTest] Running Test: {name}")
+    print(f"\n[Qastra] Running Test: {name}")
     print("=" * 50)

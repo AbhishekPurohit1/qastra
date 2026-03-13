@@ -1,8 +1,8 @@
-"""Real-world login test using VibeTest."""
+"""Real-world login test using Qastra."""
 
-from vibetest import *
+from qastra import *
 
-test("Real World Login Test")
+qastra("Real World Login Test")
 
 print("🚀 Testing with real login environment...")
 print("Opening OrangeHRM demo site...")
@@ -20,4 +20,4 @@ print("Looking for login button...")
 click("Login")
 
 print("✅ Real-world login test completed!")
-print("🎯 VibeTest works in production environments!")
+print("🎯 Qastra works in production environments!")

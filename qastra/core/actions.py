@@ -1,5 +1,5 @@
-from vibetest.browser.browser import browser
-from vibetest.engine.locator_engine import find_element
+from qastra.browser.browser import browser
+from qastra.engine.locator_engine import find_element
 
 
 def open_page(url):

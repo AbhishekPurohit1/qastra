@@ -95,7 +95,7 @@ expect("profile information")
 
 #### **Command:**
 ```bash
-vibetest suggest https://example.com/login
+qastra suggest https://example.com/login
 ```
 
 #### **AI Output:**
@@ -167,7 +167,7 @@ The login button text changed from "Login" to "Sign In"
 Update test to use "sign in button" or use more robust selector
 
 🔧 Auto-Fix Available:
-vibetest auto-fix --test=login_test.py
+qastra auto-fix --test=login_test.py
 ```
 
 ---

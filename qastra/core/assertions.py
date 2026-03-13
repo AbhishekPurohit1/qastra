@@ -1,7 +1,7 @@
-"""Advanced assertions for VibeTest E2E testing."""
+"""Advanced assertions for Qastra E2E testing."""
 
 import time
-from vibetest.browser.browser import browser
+from qastra.browser.browser import browser
 
 class Expect:
     """Advanced expectation class for E2E testing."""
@@ -99,7 +99,7 @@ def expect_url(url, timeout=5000):
 
 def wait_for_element(label, timeout=5000):
     """Wait for element to appear."""
-    from vibetest.engine.locator_engine import find_element
+    from qastra.engine.locator_engine import find_element
     start_time = time.time()
     while time.time() - start_time < timeout / 1000:
         element = find_element(browser.page, label)

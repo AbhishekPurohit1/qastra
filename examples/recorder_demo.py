@@ -1,22 +1,22 @@
-"""VibeTest Recorder Demo - Show how to turn manual actions into automated tests."""
+"""Qastra Recorder Demo - Show how to turn manual actions into automated tests."""
 
-from vibetest import *
+from qastra import *
 
-test("Recorder Demo")
+qastra("Recorder Demo")
 
-print("🎬 VibeTest Recorder Demo")
+print("🎬 Qastra Recorder Demo")
 print("=" * 50)
 
 print("\n📋 What the Recorder Does:")
 print("   1. Opens a browser at specified URL")
 print("   2. Captures your clicks and typing")
-print("   3. Converts actions to VibeTest code")
+print("   3. Converts actions to Qastra code")
 print("   4. Generates a complete test file")
 
 print("\n🎯 Example Usage:")
-print("   vibetest record https://example.com")
-print("   vibetest record https://example.com --duration 120")
-print("   vibetest record https://example.com --output my_test.py")
+print("   qastra record https://example.com")
+print("   qastra record https://example.com --duration 120")
+print("   qastra record https://example.com --output my_test.py")
 
 print("\n⌨️  Actions Captured:")
 print("   ✅ Clicks on buttons, links, elements")
@@ -32,9 +32,9 @@ print("   🎯 Element deduplication")
 
 print("\n📝 Generated Test Example:")
 print("""
-from vibetest import *
+from qastra import *
 
-test("Recorded Test")
+qastra("Recorded Test")
 
 open_page("https://example.com")
 
