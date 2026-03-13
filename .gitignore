@@ -139,6 +139,6 @@ dmypy.json
 Thumbs.db
 
 # VibeTest specific
-vibetest_history.json
+qastra_history.json
 screenshots/
 *.png

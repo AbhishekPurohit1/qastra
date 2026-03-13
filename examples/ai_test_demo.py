@@ -1,7 +1,7 @@
 """AI-Powered Testing Demo - First Real AI Features in Qastra."""
 
 from qastra import *
-from vibetest.engine.ai_locator import find_element_ai
+from qastra.engine.ai_locator import find_element_ai
 
 qastra("AI-Powered Intent Testing")
 
@@ -16,7 +16,7 @@ print("   AI-Powered: click('the blue login button on the right')")
 open_page("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
 
 # Test AI locator with natural language
-from vibetest.browser.browser import browser
+from qastra.browser.browser import browser
 ai_element = find_element_ai(browser.page, "username field")
 if ai_element:
     ai_element.fill("admin")
@@ -54,7 +54,7 @@ print("   📖 Synonyms: login→sign in, register→sign up, search→find")
 
 # Test 4: Intent Analysis
 print("\n🔍 4. Intent Analysis Demonstration:")
-from vibetest.engine.ai_locator import ai_locator
+from qastra.engine.ai_locator import ai_locator
 
 test_intents = [
     "click the blue login button",

@@ -24,8 +24,8 @@ for capability in capabilities:
     print(f"   {capability}")
 
 print("\n🎪 Complete Demo Workflow:")
-print("   1️⃣  Record test: vibetest record https://example.com")
-print("   2️⃣  Run tests: vibetest run tests --parallel 4")
+print("   1️⃣  Record test: qastra record https://example.com")
+print("   2️⃣  Run tests: qastra run tests --parallel 4")
 print("   3️⃣  View report: Auto-opens HTML dashboard")
 print("   4️⃣  Share results: Professional HTML report")
 
@@ -60,7 +60,7 @@ for feature in ai_features:
     print(f"   {feature}")
 
 print("\n🎬 Recorder Workflow:")
-print("   📹 vibetest record https://site.com")
+print("   📹 qastra record https://site.com")
 print("   🖱️  User clicks and types normally")
 print("   🤝 Actions captured automatically")
 print("   📝 Clean test code generated")
@@ -68,11 +68,11 @@ print("   ✅ Ready to run immediately")
 
 print("\n📋 CLI Commands:")
 cli_commands = [
-    "vibetest run tests                    # Sequential + report",
-    "vibetest run tests --parallel 4       # Parallel + report", 
-    "vibetest record https://example.com   # Record test",
-    "vibetest parallel tests --workers 8   # Parallel mode",
-    "vibetest sequential tests             # Sequential mode"
+    "qastra run tests                    # Sequential + report",
+    "qastra run tests --parallel 4       # Parallel + report", 
+    "qastra record https://example.com   # Record test",
+    "qastra parallel tests --workers 8   # Parallel mode",
+    "qastra sequential tests             # Sequential mode"
 ]
 
 for command in cli_commands:

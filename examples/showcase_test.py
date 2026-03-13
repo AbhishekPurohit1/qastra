@@ -1,8 +1,8 @@
 """Qastra Showcase - Best in Class E2E Testing Framework."""
 
 from qastra import *
-from vibetest.core.cross_browser import BrowserType, CrossBrowser
-from vibetest.core.e2e import create_e2e_test
+from qastra.core.cross_browser import BrowserType, CrossBrowser
+from qastra.core.e2e import create_e2e_test
 
 qastra("Qastra Showcase - Complete E2E Testing")
 
@@ -19,7 +19,7 @@ print("✅ No brittle selectors needed!")
 
 # 2. Advanced Assertions
 print("\n✨ Advanced Assertions:")
-from vibetest.core.assertions import wait_for_element, expect_page_title
+from qastra.core.assertions import wait_for_element, expect_page_title
 login_button = wait_for_element("Login")
 expect_page_title("OrangeHRM")
 print("✅ Robust assertions with timeouts!")

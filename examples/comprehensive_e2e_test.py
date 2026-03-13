@@ -1,9 +1,9 @@
 """Comprehensive E2E test suite - Best in class testing framework."""
 
 from qastra import *
-from vibetest.core.e2e import create_e2e_test, UserJourney
-from vibetest.core.cross_browser import cross_browser_test, BrowserType
-from vibetest.core.assertions import expect, expect_page_title, expect_url, wait_for_element
+from qastra.core.e2e import create_e2e_test, UserJourney
+from qastra.core.cross_browser import cross_browser_test, BrowserType
+from qastra.core.assertions import expect, expect_page_title, expect_url, wait_for_element
 
 # Test 1: Complete Login Journey (Multi-browser)
 @cross_browser_test("Login Journey", [BrowserType.CHROME, BrowserType.FIREFOX])
@@ -107,7 +107,7 @@ def test_performance():
 # Test 7: Cross-device Simulation
 def test_responsive_design():
     """Test responsive design across viewports."""
-    from vibetest.browser.browser import browser
+    from qastra.browser.browser import browser
     
     test = create_e2e_test("Responsive Design Test")
     

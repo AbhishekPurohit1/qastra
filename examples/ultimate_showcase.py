@@ -1,8 +1,8 @@
 """Qastra Ultimate Showcase - Best in Class E2E Testing Framework."""
 
 from qastra import *
-from vibetest.core.e2e import create_e2e_test, UserJourney
-from vibetest.core.assertions import wait_for_element
+from qastra.core.e2e import create_e2e_test, UserJourney
+from qastra.core.assertions import wait_for_element
 
 qastra("Qastra Ultimate Showcase")
 
