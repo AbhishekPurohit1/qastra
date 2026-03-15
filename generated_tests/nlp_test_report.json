@@ -1,0 +1,36 @@
+{
+  "sentence": "click login",
+  "status": "completed",
+  "start_time": 1773580073.3465412,
+  "end_time": 1773580080.9220622,
+  "duration": 7.575520992279053,
+  "actions_performed": [
+    "Navigated to https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "\u2705 Click element"
+  ],
+  "errors": [],
+  "parsed_intent": {
+    "intent": "click",
+    "confidence": 0.8,
+    "raw_sentence": "click login",
+    "extracted_data": {
+      "target": "login"
+    }
+  },
+  "generated_actions": [
+    [
+      "click",
+      [
+        "text=\"login\"",
+        "*:has-text(\"login\")",
+        "button:has-text(\"login\")",
+        "a:has-text(\"login\")",
+        "button:has-text(\"Login\")",
+        "button:has-text(\"Sign In\")",
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "button:has-text(\"Submit\")"
+      ]
+    ]
+  ]
+}

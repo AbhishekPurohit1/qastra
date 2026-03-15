@@ -1,0 +1,29 @@
+🧠 Qastra AI Test Plan
+==================================================
+📄 Page: Example Domain
+🌐 URL: https://example.com/
+🏷️  Type: Education
+📊 Complexity: 1
+
+📈 Test Statistics
+--------------------
+Total Tests: 5
+Critical: 1
+High Priority: 2
+Categories: 2
+
+🔥 Critical Tests (Run First)
+------------------------------
+1. Authentication Security Test
+   Test authentication security measures
+
+⚡ High Priority Tests
+-------------------------
+1. Responsive Design Test
+   Test website on different screen sizes
+2. Input Validation Test
+   Test input validation and sanitization
+
+💡 Recommended Approach
+-------------------------
+Begin with basic functionality testing, then add UI compatibility and security validation.

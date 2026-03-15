@@ -1,0 +1,380 @@
+{
+  "generated_at": "2026-03-15 19:26:36",
+  "generator": "Qastra Report Builder v1.0",
+  "version": "1.0",
+  "summary": {
+    "total": 10,
+    "passed": 0,
+    "failed": 0,
+    "flaky": 0,
+    "skip": 0,
+    "pass_rate": 0.0,
+    "total_duration": 27.447130930236426,
+    "average_duration": 2.7447130930236425
+  },
+  "tests": [
+    {
+      "name": "visual_login_test",
+      "status": "PASS",
+      "duration": 3.782296750518847,
+      "browser": "webkit",
+      "category": "visual",
+      "error_message": "",
+      "screenshot": "screenshots/visual_login_test.png",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:23:36.520522",
+      "tags": [
+        "visual"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "visual_homepage_test",
+      "status": "PASS",
+      "duration": 3.6727262353743004,
+      "browser": "webkit",
+      "category": "ecommerce",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:20:36.520522",
+      "tags": [
+        "ecommerce"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "product_detail_test",
+      "status": "PASS",
+      "duration": 3.5702824786393115,
+      "browser": "chromium",
+      "category": "ecommerce",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:14:36.520522",
+      "tags": [
+        "ecommerce",
+        "chromium"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "cart_add_test",
+      "status": "PASS",
+      "duration": 3.279257583677871,
+      "browser": "firefox",
+      "category": "ecommerce",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:17:36.520522",
+      "tags": [
+        "ecommerce",
+        "firefox"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "password_reset_test",
+      "status": "PASS",
+      "duration": 2.8305485253169547,
+      "browser": "chromium",
+      "category": "authentication",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:11:36.520522",
+      "tags": [
+        "authentication"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "profile_test",
+      "status": "PASS",
+      "duration": 2.5422522020094473,
+      "browser": "webkit",
+      "category": "search",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:05:36.520522",
+      "tags": [
+        "search"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "login_test",
+      "status": "PASS",
+      "duration": 2.518912894533293,
+      "browser": "chromium",
+      "category": "forms",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T18:56:36.520522",
+      "tags": [
+        "forms",
+        "chromium"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "checkout_test",
+      "status": "PASS",
+      "duration": 2.5002414833634234,
+      "browser": "firefox",
+      "category": "forms",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:02:36.520522",
+      "tags": [
+        "forms"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "registration_test",
+      "status": "PASS",
+      "duration": 1.6228489099600387,
+      "browser": "chromium",
+      "category": "forms",
+      "error_message": "",
+      "screenshot": "",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T19:08:36.520522",
+      "tags": [
+        "forms",
+        "chromium"
+      ],
+      "assertions": []
+    },
+    {
+      "name": "search_test",
+      "status": "PASS",
+      "duration": 1.1277638668429426,
+      "browser": "firefox",
+      "category": "visual",
+      "error_message": "",
+      "screenshot": "screenshots/search_test.png",
+      "visual_diff": "",
+      "retries": 0,
+      "timestamp": "2026-03-15T18:59:36.520522",
+      "tags": [
+        "visual",
+        "firefox"
+      ],
+      "assertions": []
+    }
+  ],
+  "categories": {
+    "authentication": {
+      "display_name": "Authentication",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "pass_rate": 100.0,
+      "tests": [
+        {
+          "name": "password_reset_test",
+          "status": "PASS",
+          "duration": 2.8305485253169547,
+          "browser": "chromium",
+          "category": "authentication",
+          "timestamp": "2026-03-15T19:11:36.520522",
+          "tags": [
+            "authentication"
+          ]
+        }
+      ]
+    },
+    "forms": {
+      "display_name": "Forms",
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "pass_rate": 100.0,
+      "tests": [
+        {
+          "name": "login_test",
+          "status": "PASS",
+          "duration": 2.518912894533293,
+          "browser": "chromium",
+          "category": "forms",
+          "timestamp": "2026-03-15T18:56:36.520522",
+          "tags": [
+            "forms",
+            "chromium"
+          ]
+        },
+        {
+          "name": "checkout_test",
+          "status": "PASS",
+          "duration": 2.5002414833634234,
+          "browser": "firefox",
+          "category": "forms",
+          "timestamp": "2026-03-15T19:02:36.520522",
+          "tags": [
+            "forms"
+          ]
+        },
+        {
+          "name": "registration_test",
+          "status": "PASS",
+          "duration": 1.6228489099600387,
+          "browser": "chromium",
+          "category": "forms",
+          "timestamp": "2026-03-15T19:08:36.520522",
+          "tags": [
+            "forms",
+            "chromium"
+          ]
+        }
+      ]
+    },
+    "search": {
+      "display_name": "Search",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "pass_rate": 100.0,
+      "tests": [
+        {
+          "name": "profile_test",
+          "status": "PASS",
+          "duration": 2.5422522020094473,
+          "browser": "webkit",
+          "category": "search",
+          "timestamp": "2026-03-15T19:05:36.520522",
+          "tags": [
+            "search"
+          ]
+        }
+      ]
+    },
+    "ecommerce": {
+      "display_name": "E-commerce",
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "pass_rate": 100.0,
+      "tests": [
+        {
+          "name": "product_detail_test",
+          "status": "PASS",
+          "duration": 3.5702824786393115,
+          "browser": "chromium",
+          "category": "ecommerce",
+          "timestamp": "2026-03-15T19:14:36.520522",
+          "tags": [
+            "ecommerce",
+            "chromium"
+          ]
+        },
+        {
+          "name": "cart_add_test",
+          "status": "PASS",
+          "duration": 3.279257583677871,
+          "browser": "firefox",
+          "category": "ecommerce",
+          "timestamp": "2026-03-15T19:17:36.520522",
+          "tags": [
+            "ecommerce",
+            "firefox"
+          ]
+        },
+        {
+          "name": "visual_homepage_test",
+          "status": "PASS",
+          "duration": 3.6727262353743004,
+          "browser": "webkit",
+          "category": "ecommerce",
+          "timestamp": "2026-03-15T19:20:36.520522",
+          "tags": [
+            "ecommerce"
+          ]
+        }
+      ]
+    },
+    "visual": {
+      "display_name": "Visual",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "pass_rate": 100.0,
+      "tests": [
+        {
+          "name": "search_test",
+          "status": "PASS",
+          "duration": 1.1277638668429426,
+          "browser": "firefox",
+          "category": "visual",
+          "timestamp": "2026-03-15T18:59:36.520522",
+          "tags": [
+            "visual",
+            "firefox"
+          ],
+          "screenshot": "screenshots/search_test.png"
+        },
+        {
+          "name": "visual_login_test",
+          "status": "PASS",
+          "duration": 3.782296750518847,
+          "browser": "webkit",
+          "category": "visual",
+          "timestamp": "2026-03-15T19:23:36.520522",
+          "tags": [
+            "visual"
+          ],
+          "screenshot": "screenshots/visual_login_test.png"
+        }
+      ]
+    }
+  },
+  "performance": {
+    "total_duration": 27.44713093023643,
+    "average_duration": 2.744713093023643,
+    "median_duration": 2.8305485253169547,
+    "slow_tests": [],
+    "fast_tests": [
+      {
+        "name": "search_test",
+        "status": "PASS",
+        "duration": 1.1277638668429426,
+        "browser": "firefox",
+        "category": "visual",
+        "timestamp": "2026-03-15T18:59:36.520522",
+        "tags": [
+          "visual",
+          "firefox"
+        ],
+        "screenshot": "screenshots/search_test.png"
+      }
+    ],
+    "duration_distribution": {
+      "under_1s": 0,
+      "1_to_5s": 10,
+      "5_to_10s": 0,
+      "over_10s": 0
+    }
+  },
+  "failures": {
+    "total_failures": 0,
+    "failure_rate": 0,
+    "common_errors": {},
+    "failure_by_category": {},
+    "failure_by_browser": {}
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "orangehrm_login",
+  "difference_score": 0.0,
+  "pixel_difference_percentage": 0.0,
+  "threshold": 10.0,
+  "passed": "True",
+  "layout_analysis": {
+    "layout_changes": "0",
+    "color_changes": "0",
+    "total_pixels": 921600,
+    "layout_change_percentage": 0.0,
+    "color_change_percentage": 0.0
+  },
+  "files": {
+    "baseline": ".qastra_visual/baseline/orangehrm_login.png",
+    "current": ".qastra_visual/current/orangehrm_login.png",
+    "diff": ".qastra_visual/diff/orangehrm_login_diff.png",
+    "highlighted": ".qastra_visual/diff/orangehrm_login_highlighted.png"
+  }
+}

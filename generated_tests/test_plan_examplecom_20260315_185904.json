@@ -1,0 +1,149 @@
+{
+  "page_info": {
+    "url": "https://example.com/",
+    "title": "Example Domain",
+    "page_type": "education",
+    "complexity_score": 1
+  },
+  "test_statistics": {
+    "total_suggestions": 5,
+    "critical_priority": 1,
+    "high_priority": 2,
+    "categories": 2
+  },
+  "categorized_suggestions": {
+    "security": [
+      {
+        "name": "Authentication Security Test",
+        "description": "Test authentication security measures",
+        "category": "security",
+        "priority": "critical",
+        "test_cases": [
+          "Password strength",
+          "Session management",
+          "Login attempts limit",
+          "Logout functionality"
+        ]
+      },
+      {
+        "name": "Input Validation Test",
+        "description": "Test input validation and sanitization",
+        "category": "security",
+        "priority": "high",
+        "test_cases": [
+          "SQL injection prevention",
+          "XSS prevention",
+          "Input length limits",
+          "Special characters"
+        ]
+      }
+    ],
+    "ui": [
+      {
+        "name": "Responsive Design Test",
+        "description": "Test website on different screen sizes",
+        "category": "ui",
+        "priority": "high",
+        "test_cases": [
+          "Mobile view",
+          "Tablet view",
+          "Desktop view",
+          "Orientation changes"
+        ]
+      },
+      {
+        "name": "Browser Compatibility Test",
+        "description": "Test website on different browsers",
+        "category": "ui",
+        "priority": "medium",
+        "test_cases": [
+          "Chrome",
+          "Firefox",
+          "Safari",
+          "Edge"
+        ]
+      },
+      {
+        "name": "Performance Test",
+        "description": "Test website performance metrics",
+        "category": "ui",
+        "priority": "medium",
+        "test_cases": [
+          "Page load time",
+          "Image optimization",
+          "Script loading",
+          "Cache behavior"
+        ]
+      }
+    ]
+  },
+  "all_suggestions": [
+    {
+      "name": "Authentication Security Test",
+      "description": "Test authentication security measures",
+      "category": "security",
+      "priority": "critical",
+      "test_cases": [
+        "Password strength",
+        "Session management",
+        "Login attempts limit",
+        "Logout functionality"
+      ]
+    },
+    {
+      "name": "Responsive Design Test",
+      "description": "Test website on different screen sizes",
+      "category": "ui",
+      "priority": "high",
+      "test_cases": [
+        "Mobile view",
+        "Tablet view",
+        "Desktop view",
+        "Orientation changes"
+      ]
+    },
+    {
+      "name": "Input Validation Test",
+      "description": "Test input validation and sanitization",
+      "category": "security",
+      "priority": "high",
+      "test_cases": [
+        "SQL injection prevention",
+        "XSS prevention",
+        "Input length limits",
+        "Special characters"
+      ]
+    },
+    {
+      "name": "Browser Compatibility Test",
+      "description": "Test website on different browsers",
+      "category": "ui",
+      "priority": "medium",
+      "test_cases": [
+        "Chrome",
+        "Firefox",
+        "Safari",
+        "Edge"
+      ]
+    },
+    {
+      "name": "Performance Test",
+      "description": "Test website performance metrics",
+      "category": "ui",
+      "priority": "medium",
+      "test_cases": [
+        "Page load time",
+        "Image optimization",
+        "Script loading",
+        "Cache behavior"
+      ]
+    }
+  ],
+  "recommended_approach": "Begin with basic functionality testing, then add UI compatibility and security validation.",
+  "metadata": {
+    "generated_at": "2026-03-15T18:59:04.019172",
+    "url": "https://example.com",
+    "planner_version": "1.0",
+    "analysis_duration": "N/A"
+  }
+}

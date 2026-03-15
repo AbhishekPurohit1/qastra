@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Qastra Test Suite" tests="10" failures="0 skipped="0" time="27.447130930236426">
+  <testcase name="visual_login_test" classname="visual" time="3.782296750518847" />
+  <testcase name="visual_homepage_test" classname="ecommerce" time="3.6727262353743004" />
+  <testcase name="product_detail_test" classname="ecommerce" time="3.5702824786393115" />
+  <testcase name="cart_add_test" classname="ecommerce" time="3.279257583677871" />
+  <testcase name="password_reset_test" classname="authentication" time="2.8305485253169547" />
+  <testcase name="profile_test" classname="search" time="2.5422522020094473" />
+  <testcase name="login_test" classname="forms" time="2.518912894533293" />
+  <testcase name="checkout_test" classname="forms" time="2.5002414833634234" />
+  <testcase name="registration_test" classname="forms" time="1.6228489099600387" />
+  <testcase name="search_test" classname="visual" time="1.1277638668429426" />
+</testsuite>

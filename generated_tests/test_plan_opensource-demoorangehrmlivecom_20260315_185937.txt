@@ -1,0 +1,33 @@
+🧠 Qastra AI Test Plan
+==================================================
+📄 Page: OrangeHRM
+🌐 URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+🏷️  Type: Corporate
+📊 Complexity: 41
+
+📈 Test Statistics
+--------------------
+Total Tests: 10
+Critical: 3
+High Priority: 2
+Categories: 5
+
+🔥 Critical Tests (Run First)
+------------------------------
+1. Login Flow Test
+   Test user login functionality
+2. Login Flow End-to-End Test
+   Test complete login flow user journey
+3. Authentication Security Test
+   Test authentication security measures
+
+⚡ High Priority Tests
+-------------------------
+1. Responsive Design Test
+   Test website on different screen sizes
+2. Input Validation Test
+   Test input validation and sanitization
+
+💡 Recommended Approach
+-------------------------
+Focus on navigation, contact forms, and information accessibility. Include responsive design testing.

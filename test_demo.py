@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""
+Demo test file for testing the maintenance bot.
+"""
+
+from playwright.sync_api import sync_playwright
+
+def test_login():
+    """Test login functionality."""
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        
+        # Navigate to login page
+        page.goto("https://example.com/login")
+        
+        # Fill login form - these locators will be "broken" for demo
+        page.fill("#signin-btn", "test@example.com")  # This is wrong - should be an input
+        page.fill("input[name='username']", "testuser")  # This locator will change
+        page.fill("input[name='password']", "password123")
+        
+        # Click login button
+        page.click("#signin-btn")  # This locator will change
+        
+        # Verify login
+        page.wait_for_selector("#dashboard")
+        
+        browser.close()
+
+def test_search():
+    """Test search functionality."""
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        
+        page.goto("https://example.com")
+        
+        # Search for something
+        page.fill("#search-field", "test query")
+        page.click("#search-btn")
+        
+        # Verify results
+        page.wait_for_selector(".search-results")
+        
+        browser.close()
+
+if __name__ == "__main__":
+    test_login()
+    test_search()

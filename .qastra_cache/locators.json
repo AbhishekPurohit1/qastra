@@ -1,0 +1,82 @@
+{
+  "ad98a7f65d9cef4dc091eb4c7e45269b": {
+    "url": "https://www.google.com",
+    "description": "input[type=\"submit\"][value*=\"Search\"]",
+    "fingerprint": {
+      "tag": "input",
+      "text": "",
+      "id": "",
+      "class": "gNO89b",
+      "name": "btnK",
+      "placeholder": "",
+      "type": "submit",
+      "value": "Google Search",
+      "href": "",
+      "title": "",
+      "alt": ""
+    },
+    "created_at": "2026-03-15T18:37:10.000996",
+    "last_used": "2026-03-15T18:37:10.001006",
+    "usage_count": 1
+  },
+  "582fa32dc0176662d5a1d01f76b8c1da": {
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "description": "login",
+    "fingerprint": {
+      "tag": "h5",
+      "text": "Login",
+      "id": "",
+      "class": "oxd-text oxd-text--h5 orangehrm-login-title",
+      "name": "",
+      "placeholder": "",
+      "type": "",
+      "value": "",
+      "href": "",
+      "title": "",
+      "alt": ""
+    },
+    "created_at": "2026-03-15T18:45:38.340961",
+    "last_used": "2026-03-15T18:45:38.340970",
+    "usage_count": 1
+  },
+  "ca722e8f45c60cf4142d0435992a6ede": {
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "description": "admin",
+    "fingerprint": {
+      "tag": "p",
+      "text": "Username : Admin",
+      "id": "",
+      "class": "oxd-text oxd-text--p",
+      "name": "",
+      "placeholder": "",
+      "type": "",
+      "value": "",
+      "href": "",
+      "title": "",
+      "alt": ""
+    },
+    "created_at": "2026-03-15T18:45:42.449607",
+    "last_used": "2026-03-15T18:45:42.449616",
+    "usage_count": 1
+  },
+  "e931a9925cd83bde09d72a5ed16a5850": {
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "description": "user",
+    "fingerprint": {
+      "tag": "p",
+      "text": "Username : Admin",
+      "id": "",
+      "class": "oxd-text oxd-text--p",
+      "name": "",
+      "placeholder": "",
+      "type": "",
+      "value": "",
+      "href": "",
+      "title": "",
+      "alt": ""
+    },
+    "created_at": "2026-03-15T18:45:44.396633",
+    "last_used": "2026-03-15T18:45:44.396640",
+    "usage_count": 1
+  }
+}

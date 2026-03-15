@@ -1,0 +1,45 @@
+{
+  "url": "https://example.com",
+  "page_title": "Example Domain",
+  "test_name": "example.com_Example_Domain",
+  "generated_at": "2026-03-14T23:34:00.591767",
+  "elements_found": 1,
+  "page_structure": {
+    "forms": [],
+    "inputs": [],
+    "buttons": [],
+    "links": [
+      {
+        "text": "Learn more",
+        "href": "https://iana.org/domains/example",
+        "id": "",
+        "class": "",
+        "title": "",
+        "target": "",
+        "is_external": true,
+        "selector": "a"
+      }
+    ],
+    "interactive_elements": [
+      {
+        "tag": "a",
+        "text": "Learn more",
+        "id": "",
+        "class": "",
+        "attributes": {
+          "href": "https://iana.org/domains/example"
+        },
+        "selector": "a",
+        "is_interactive": true
+      }
+    ],
+    "page_info": {
+      "title": "Example Domain",
+      "total_forms": 0,
+      "total_inputs": 0,
+      "total_buttons": 0,
+      "total_links": 1,
+      "total_interactive": 1
+    }
+  }
+}

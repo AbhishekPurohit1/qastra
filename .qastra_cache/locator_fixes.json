@@ -1,0 +1,29 @@
+[
+  {
+    "file_path": "test_demo.py",
+    "old_locator": "#login-btn",
+    "new_locator": "#signin-btn",
+    "confidence": 0.95,
+    "timestamp": "2026-03-15T19:00:00",
+    "applied": true,
+    "applied_at": "2026-03-15T19:06:54.163503"
+  },
+  {
+    "file_path": "test_demo.py",
+    "old_locator": "input[name='username']",
+    "new_locator": "input[name='user']",
+    "confidence": 0.88,
+    "timestamp": "2026-03-15T19:01:00",
+    "applied": true,
+    "applied_at": "2026-03-15T19:06:54.165681"
+  },
+  {
+    "file_path": "test_demo.py",
+    "old_locator": "#search-input",
+    "new_locator": "#search-field",
+    "confidence": 0.92,
+    "timestamp": "2026-03-15T19:02:00",
+    "applied": true,
+    "applied_at": "2026-03-15T19:06:54.167742"
+  }
+]

@@ -1,0 +1,673 @@
+"""
+HTML Templates - Modern, responsive templates for Qastra test reports.
+"""
+
+# Main HTML template with modern design
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qastra Test Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }}
+        
+        .container {{
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }}
+        
+        .header {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }}
+        
+        .header h1 {{
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }}
+        
+        .header .subtitle {{
+            font-size: 1.1em;
+            opacity: 0.9;
+        }}
+        
+        .summary {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8fafc;
+        }}
+        
+        .summary-card {{
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }}
+        
+        .summary-card:hover {{
+            transform: translateY(-5px);
+        }}
+        
+        .summary-card .number {{
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }}
+        
+        .summary-card .label {{
+            color: #64748b;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }}
+        
+        .pass {{ color: #10b981; }}
+        .fail {{ color: #ef4444; }}
+        .flaky {{ color: #f59e0b; }}
+        .skip {{ color: #6b7280; }}
+        .error {{ color: #dc2626; }}
+        
+        .content {{
+            padding: 30px;
+        }}
+        
+        .section {{
+            margin-bottom: 40px;
+        }}
+        
+        .section h2 {{
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }}
+        
+        .section h2::before {{
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }}
+        
+        .chart-container {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }}
+        
+        .chart-box {{
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }}
+        
+        .chart-box h3 {{
+            margin-bottom: 15px;
+            color: #475569;
+        }}
+        
+        .test-table {{
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }}
+        
+        .test-table th {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }}
+        
+        .test-table td {{
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }}
+        
+        .test-table tr:hover {{
+            background: #f8fafc;
+        }}
+        
+        .test-row.pass {{
+            border-left: 4px solid #10b981;
+        }}
+        
+        .test-row.fail {{
+            border-left: 4px solid #ef4444;
+        }}
+        
+        .test-row.flaky {{
+            border-left: 4px solid #f59e0b;
+        }}
+        
+        .test-row.skip {{
+            border-left: 4px solid #6b7280;
+        }}
+        
+        .test-row.error {{
+            border-left: 4px solid #dc2626;
+        }}
+        
+        .status-badge {{
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.85em;
+            font-weight: 600;
+        }}
+        
+        .test-name {{
+            font-weight: 600;
+            color: #1e293b;
+        }}
+        
+        .test-name-content {{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }}
+        
+        .tag {{
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.75em;
+            color: #64748b;
+            margin-right: 5px;
+        }}
+        
+        .action-btn {{
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 0.9em;
+        }}
+        
+        .action-btn:hover {{
+            background: #5a67d8;
+        }}
+        
+        .category-cards {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }}
+        
+        .category-card {{
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }}
+        
+        .category-card h3 {{
+            margin-bottom: 15px;
+            color: #1e293b;
+        }}
+        
+        .category-stats {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }}
+        
+        .stat {{
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }}
+        
+        .stat-label {{
+            color: #64748b;
+            font-size: 0.9em;
+        }}
+        
+        .stat-value {{
+            font-weight: 600;
+            color: #1e293b;
+        }}
+        
+        .error-content {{
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }}
+        
+        .error-message {{
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }}
+        
+        .modal {{
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+        }}
+        
+        .modal-content {{
+            background: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow: auto;
+        }}
+        
+        .close {{
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }}
+        
+        .close:hover {{
+            color: #000;
+        }}
+        
+        .screenshot-img, .diff-img {{
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }}
+        
+        .footer {{
+            background: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+        }}
+        
+        @media (max-width: 768px) {{
+            .container {{
+                border-radius: 0;
+            }}
+            
+            .summary {{
+                grid-template-columns: repeat(2, 1fr);
+                padding: 20px;
+            }}
+            
+            .chart-container {{
+                grid-template-columns: 1fr;
+            }}
+            
+            .category-cards {{
+                grid-template-columns: 1fr;
+            }}
+            
+            .test-table {{
+                font-size: 0.9em;
+            }}
+            
+            .test-table th, .test-table td {{
+                padding: 10px;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Qastra Test Report</h1>
+            <div class="subtitle">Generated on {generated_at}</div>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-card">
+                <div class="number pass">{total}</div>
+                <div class="label">Total Tests</div>
+            </div>
+            <div class="summary-card">
+                <div class="number pass">{passed}</div>
+                <div class="label">Passed</div>
+            </div>
+            <div class="summary-card">
+                <div class="number fail">{failed}</div>
+                <div class="label">Failed</div>
+            </div>
+            <div class="summary-card">
+                <div class="number flaky">{flaky}</div>
+                <div class="label">Flaky</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">{pass_rate:.1f}%</div>
+                <div class="label">Pass Rate</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">{total_duration:.1f}s</div>
+                <div class="label">Total Duration</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>📊 Test Results Overview</h2>
+                <div class="chart-container">
+                    <div class="chart-box">
+                        <h3>Status Distribution</h3>
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <h3>Category Performance</h3>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📂 Test Categories</h2>
+                <div class="category-cards">
+                    {category_cards}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🧪 Test Results</h2>
+                <table class="test-table">
+                    <thead>
+                        <tr>
+                            <th>Test Name</th>
+                            <th>Status</th>
+                            <th>Duration</th>
+                            <th>Browser</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {test_rows}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Generated by Qastra v1.0 | AI-Powered Test Automation Framework</p>
+        </div>
+    </div>
+    
+    <!-- Modal for screenshots and diffs -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Chart data
+        const statusData = {status_chart_data};
+        const categoryData = {category_chart_data};
+        
+        // Status distribution chart
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        new Chart(statusCtx, {{
+            type: 'doughnut',
+            data: {{
+                labels: Object.keys(statusData),
+                datasets: [{{
+                    data: Object.values(statusData),
+                    backgroundColor: ['#10b981', '#ef4444', '#f59e0b', '#6b7280', '#dc2626'],
+                    borderWidth: 0
+                }}]
+            }},
+            options: {{
+                responsive: true,
+                plugins: {{
+                    legend: {{
+                        position: 'bottom'
+                    }}
+                }}
+            }}
+        }});
+        
+        // Category performance chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(categoryCtx, {{
+            type: 'bar',
+            data: {{
+                labels: Object.keys(categoryData),
+                datasets: [{{
+                    label: 'Pass Rate %',
+                    data: Object.values(categoryData),
+                    backgroundColor: '#667eea',
+                    borderRadius: 5
+                }}]
+            }},
+            options: {{
+                responsive: true,
+                scales: {{
+                    y: {{
+                        beginAtZero: true,
+                        max: 100
+                    }}
+                }},
+                plugins: {{
+                    legend: {{
+                        display: false
+                    }}
+                }}
+            }}
+        }});
+        
+        // Modal functions
+        function showScreenshot(imagePath) {{
+            const modal = document.getElementById('imageModal');
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h3>📷 Screenshot</h3>
+                <img src="${{imagePath}}" alt="Screenshot" class="screenshot-img">
+            `;
+            modal.style.display = 'block';
+        }}
+        
+        function showDiff(diffPath) {{
+            const modal = document.getElementById('imageModal');
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h3>🔍 Visual Difference</h3>
+                <img src="${{diffPath}}" alt="Visual Diff" class="diff-img">
+            `;
+            modal.style.display = 'block';
+        }}
+        
+        function closeModal() {{
+            document.getElementById('imageModal').style.display = 'none';
+        }}
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {{
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {{
+                closeModal();
+            }}
+        }}
+        
+        // Toggle error details
+        document.addEventListener('click', function(e) {{
+            if (e.target.closest('.test-row')) {{
+                const row = e.target.closest('.test-row');
+                const nextRow = row.nextElementSibling;
+                if (nextRow && nextRow.classList.contains('error-details')) {{
+                    nextRow.style.display = nextRow.style.display === 'none' ? 'table-row' : 'none';
+                }}
+            }}
+        }});
+        
+        // Auto-refresh every 30 seconds (optional)
+        // setInterval(() => location.reload(), 30000);
+    </script>
+</body>
+</html>
+"""
+
+# Simple template for quick reports
+SIMPLE_TEMPLATE = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qastra Test Report</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; margin: 40px; }}
+        .header {{ text-align: center; margin-bottom: 30px; }}
+        .summary {{ display: flex; justify-content: space-around; margin-bottom: 30px; }}
+        .summary-item {{ text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }}
+        .pass {{ color: green; }}
+        .fail {{ color: red; }}
+        .flaky {{ color: orange; }}
+        table {{ width: 100%; border-collapse: collapse; }}
+        th, td {{ padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }}
+        th {{ background-color: #f4f4f4; }}
+        .status-pass {{ background-color: #d4edda; }}
+        .status-fail {{ background-color: #f8d7da; }}
+        .status-flaky {{ background-color: #fff3cd; }}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 Qastra Test Report</h1>
+        <p>Generated on {generated_at}</p>
+    </div>
+    
+    <div class="summary">
+        <div class="summary-item">
+            <h3>{total}</h3>
+            <p>Total Tests</p>
+        </div>
+        <div class="summary-item pass">
+            <h3>{passed}</h3>
+            <p>Passed</p>
+        </div>
+        <div class="summary-item fail">
+            <h3>{failed}</h3>
+            <p>Failed</p>
+        </div>
+        <div class="summary-item flaky">
+            <h3>{flaky}</h3>
+            <p>Flaky</p>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Test Name</th>
+                <th>Status</th>
+                <th>Duration</th>
+                <th>Browser</th>
+            </tr>
+        </thead>
+        <tbody>
+            {test_rows}
+        </tbody>
+    </table>
+</body>
+</html>
+"""
+
+# Email template for test notifications
+EMAIL_TEMPLATE = """
+Subject: 🤖 Qastra Test Report - {passed}/{total} tests passed
+
+Qastra Test Report
+=================
+
+Generated on: {generated_at}
+Total Tests: {total}
+Passed: {passed} ({pass_rate:.1f}%)
+Failed: {failed}
+Flaky: {flaky}
+Total Duration: {total_duration:.1f}s
+
+Test Results:
+-----------
+{test_summary}
+
+Failed Tests:
+------------
+{failed_tests}
+
+View full report: {report_url}
+
+---
+Generated by Qastra AI-Powered Test Automation Framework
+"""
+
+# JSON template for API responses
+API_TEMPLATE = """
+{{
+    "metadata": {{
+        "generated_at": "{generated_at}",
+        "generator": "Qastra Report Builder v1.0",
+        "version": "1.0"
+    }},
+    "summary": {{
+        "total": {total},
+        "passed": {passed},
+        "failed": {failed},
+        "flaky": {flaky},
+        "pass_rate": {pass_rate},
+        "total_duration": {total_duration}
+    }},
+    "tests": {test_results},
+    "categories": {categories},
+    "performance": {performance},
+    "failures": {failures}
+}}
+"""

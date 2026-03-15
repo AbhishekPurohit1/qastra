@@ -60,9 +60,15 @@
     "id": null
   },
   "login": {
+    "tag": "BUTTON",
+    "text": "Login",
+    "class": "oxd-button oxd-button--medium oxd-button--main orangehrm-login-button",
+    "id": null
+  },
+  "dashboard": {
     "tag": "A",
-    "text": "Learn more",
-    "class": null,
+    "text": "Dashboard",
+    "class": "oxd-main-menu-item active",
     "id": null
   }
 }

@@ -97,6 +97,19 @@ def expect_url(url, timeout=5000):
         time.sleep(0.1)
     raise AssertionError(f"Page URL does not contain '{url}' within {timeout}ms")
 
+def expect_page_title_contains(title, timeout=5000):
+    """Expect page title to contain specific text."""
+    start_time = time.time()
+    while time.time() - start_time < timeout / 1000:
+        try:
+            if browser.page and title in browser.page.title():
+                print(f"✅ Page title contains: '{title}'")
+                return True
+        except:
+            pass
+        time.sleep(0.1)
+    raise AssertionError(f"Page title does not contain '{title}' within {timeout}ms")
+
 def wait_for_element(label, timeout=5000):
     """Wait for element to appear."""
     from qastra.engine.locator_engine import find_element

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test E-Commerce Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .product h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .product .brand {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .product .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .product .rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        .product .availability {
+            color: #28a745;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .product button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .product button:hover {
+            background: #218838;
+        }
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 Test E-Commerce Store</h1>
+            <div class="search-bar">
+                <input type="search" placeholder="Search for products..." id="searchInput">
+                <button onclick="performSearch()">Search</button>
+            </div>
+        </div>
+        
+        <div class="products" id="products">
+            <div class="product">
+                <h3>Dell Inspiron Laptop</h3>
+                <div class="brand">Brand: Dell</div>
+                <div class="price">$699.99</div>
+                <div class="rating">★★★★☆ (4.2 stars)</div>
+                <div class="availability">In Stock</div>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <h3>HP Pavilion Laptop</h3>
+                <div class="brand">Brand: HP</div>
+                <div class="price">$549.99</div>
+                <div class="rating">★★★☆☆ (3.8 stars)</div>
+                <div class="availability">In Stock</div>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <h3>Apple MacBook Pro</h3>
+                <div class="brand">Brand: Apple</div>
+                <div class="price">$1299.99</div>
+                <div class="rating">★★★★★ (4.8 stars)</div>
+                <div class="availability">In Stock</div>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <h3>Lenovo ThinkPad</h3>
+                <div class="brand">Brand: Lenovo</div>
+                <div class="price">$799.99</div>
+                <div class="rating">★★★★☆ (4.1 stars)</div>
+                <div class="availability">In Stock</div>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <h3>Asus VivoBook</h3>
+                <div class="brand">Brand: Asus</div>
+                <div class="price">$449.99</div>
+                <div class="rating">★★★☆☆ (3.5 stars)</div>
+                <div class="availability">Limited Stock</div>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <h3>Microsoft Surface</h3>
+                <div class="brand">Brand: Microsoft</div>
+                <div class="price">$999.99</div>
+                <div class="rating">★★★★☆ (4.3 stars)</div>
+                <div class="availability">In Stock</div>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    
+    <a href="#cart" class="cart">🛒 Cart (0)</a>
+    
+    <script>
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            
+            products.forEach(product => {
+                const text = product.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+        
+        function addToCart(button) {
+            const cart = document.querySelector('.cart');
+            const currentCount = parseInt(cart.textContent.match(/\d+/)[0]);
+            cart.textContent = `🛒 Cart (${currentCount + 1})`;
+            
+            // Change button text temporarily
+            const originalText = button.textContent;
+            button.textContent = '✓ Added!';
+            button.style.background = '#28a745';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '#28a745';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
