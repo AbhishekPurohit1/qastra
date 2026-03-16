@@ -70,5 +70,11 @@
     "text": "Dashboard",
     "class": "oxd-main-menu-item active",
     "id": null
+  },
+  "nonexistent_button_that_cannot_be_found": {
+    "tag": "A",
+    "text": "",
+    "class": null,
+    "id": null
   }
 }

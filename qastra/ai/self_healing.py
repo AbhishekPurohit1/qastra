@@ -368,3 +368,7 @@ class SelfHealingLocator:
             'recent_healings': self.healing_log[-10:],  # Last 10 events
             'healing_by_url': healing_by_url
         }
+
+
+# Add alias for compatibility
+SelfHealingEngine = SelfHealingLocator

@@ -1,0 +1,6 @@
+open https://example.com/login
+type "abhi" into "username field"
+type "password123" into "password field"
+click "login button"
+verify "dashboard"
+

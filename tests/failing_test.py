@@ -1,15 +1,16 @@
-"""Failing test to demonstrate error reporting."""
+"""Failing test to demonstrate error reporting.
 
-from qastra import *
+This test is intentionally marked xfail so it demonstrates a failure scenario
+without breaking test collection for the rest of the suite.
+"""
 
-qastra("Failing Test Example")
+import pytest
 
-print("🚀 Running a test that will fail...")
+from qastra import click, qastra
 
-# This will fail because the element doesn't exist
-try:
+
+@pytest.mark.xfail(reason="Deliberate failure for demonstration")
+def test_deliberate_failure_demo():
+    qastra("Failing Test Example")
+    print("🚀 Running a test that will fail...")
     click("nonexistent_button_that_cannot_be_found")
-    print("❌ This should have failed!")
-except Exception as e:
-    print(f"✅ Expected failure: {e}")
-    raise Exception("This is a deliberate test failure for demonstration")
