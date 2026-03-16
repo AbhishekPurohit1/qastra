@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qastra"
-version = "0.1.0"
+version = "0.1.1"
 description = "AI-first browser automation framework for Python"
 readme = "README.md"
 authors = [
@@ -26,6 +26,10 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
     "Topic :: Software Development :: Testing",
     "Topic :: Software Development :: Quality Assurance",
     "Topic :: Internet :: WWW/HTTP :: Browsers",

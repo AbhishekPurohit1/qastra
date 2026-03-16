@@ -162,27 +162,47 @@ expect("Dashboard")
 pip install qastra
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
-1. Install Playwright browsers:
+**Install in 30 seconds:**
 ```bash
+pip install qastra
 playwright install
+qastra --help
 ```
 
-2. Create a test file `test_login.py`:
+**Your first test:**
 ```python
 from qastra import *
 
-test("Login Flow")
+@qastra
+def my_test():
+    open_page("https://example.com")
+    click("More information")
+    expect_page_title_contains("Example")
 
-open_page("https://example.com")
-click("More information")
+if __name__ == "__main__":
+    my_test()
 ```
 
-3. Run your test:
+**Run it:**
 ```bash
-qastra run test_login.py
+python my_test.py
 ```
+
+**No coding required - Record tests:**
+```bash
+qastra record https://example.com
+# Click around, then close browser
+python recorded_test.py
+```
+
+## 📖 Documentation
+
+- **📋 [Installation Guide](INSTALLATION.md)** - Step-by-step setup for all systems
+- **⚡ [Quick Start Guide](QUICK_START.md)** - Learn Qastra in 5 minutes  
+- **🎬 [Examples](examples/)** - Ready-to-use test templates
+- **🤖 [AI Features](AI_FEATURES.md)** - Advanced automation capabilities
 
 ## CLI Usage
 
