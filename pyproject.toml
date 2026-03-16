@@ -7,7 +7,7 @@ name = "qastra"
 version = "0.1.0"
 description = "AI-first browser automation framework for Python"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = {text = "MIT"}
 authors = [
     {name = "AbhishekPurohit1", email = "abhishekpurohit444@gmail.com"}
 ]
