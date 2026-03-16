@@ -7,7 +7,6 @@ name = "qastra"
 version = "0.1.0"
 description = "AI-first browser automation framework for Python"
 readme = "README.md"
-license = {text = "MIT"}
 authors = [
     {name = "AbhishekPurohit1", email = "abhishekpurohit444@gmail.com"}
 ]
@@ -58,6 +57,7 @@ qastra = "qastra.cli.cli:cli"
 
 [tool.setuptools]
 packages = ["qastra"]
+include-package-data = false
 
 [tool.setuptools.package-data]
 qastra = ["*.json", "*.yaml", "*.yml"]
