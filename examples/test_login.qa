@@ -1,0 +1,34 @@
+# Qastra DSL Example - Login Flow Test
+# Simple, readable test without Python code
+
+# Navigate to login page
+open_page "https://example.com/login"
+
+# Verify we're on login page
+expect_page_title "Login"
+
+# Fill in credentials
+type_into "username" "admin@example.com"
+type_into "password" "SecurePassword123!"
+
+# Click login button (AI understands "login", "sign in", etc.)
+click "login"
+
+# Wait for dashboard to load
+wait_for_element "dashboard" timeout 10000
+
+# Verify successful login
+expect_page_title "Dashboard"
+expect_page_contains "Welcome"
+
+# Test user menu
+click "user-profile"
+wait_for_element "logout" timeout 5000
+
+# Logout and verify
+click "logout"
+wait_for_element "login" timeout 5000
+expect_page_title "Login"
+
+# Test completed successfully
+print "Login flow test passed!"

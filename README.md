@@ -1,165 +1,69 @@
-# Qastra
+# 🤖 Qastra
 
-AI-first browser automation framework for Python.
+**AI-first Playwright-based test framework that understands user intent instead of selectors.**
 
-**Test user intent, not selectors.**
+[![PyPI version](https://badge.fury.io/py/qastra.svg)](https://badge.fury.io/py/qastra)
+[![Python versions](https://img.shields.io/pypi/pyversions/qastra.svg)](https://pypi.org/project/qastra/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build Status](https://github.com/AbhishekPurohit1/qastra/workflows/CI/badge.svg)](https://github.com/AbhishekPurohit1/qastra/actions)
+[![Stage: Alpha](https://img.shields.io/badge/stage-alpha-orange.svg)](https://github.com/AbhishekPurohit1/qastra)
 
-**Owner:** [AbhishekPurohit1](https://github.com/AbhishekPurohit1)
+## 🎯 Who is this for?
 
-## Problem
+- **QA Engineers** who want reliable, maintainable tests
+- **SDETs** building test automation frameworks  
+- **Manual Testers** transitioning to automation
+- **Developers** needing quick browser tests
+- **Teams** wanting to reduce test maintenance
 
-Automation tests break because of brittle selectors.
+## � Problem → Solution → Example
 
+### 😩 The Problem
 ```python
-# Traditional automation - FRAGILE
+# Traditional automation - BRITTLE
 driver.find_element(By.XPATH, "//button[@class='btn-primary']")
+driver.find_element(By.CSS_SELECTOR, "#username")
 ```
+*Breaks when UI changes, hard to read, requires selector knowledge.*
 
-## Solution
-
-Write tests using user intent.
-
+### 😎 The Solution  
 ```python
-# Qastra - ROBUST
+# Qastra - INTENT-DRIVEN
 click("login")
+type_into("username", "admin")
 ```
+*Understands user intent, self-healing, readable by anyone.*
 
-## 🌟 AI-Powered Features (v0.2+)
-
-### **Natural Language Understanding**
-```python
-# AI understands intent, not just text
-find_element_ai(page, "the blue login button on the right")
-```
-
-### **Intent Analysis**
-```python
-# AI parses: "click the blue login button"
-# → Target: "login"
-# → Position: "right" 
-# → Color: "blue"
-# → Confidence: 0.8
-```
-
-### **Synonym Recognition**
-```python
-# AI knows these are equivalent:
-click("login")      # ≈ click("sign in")
-click("register")   # ≈ click("sign up")
-click("search")     # ≈ click("find")
-```
-
-## 🚀 Advanced Automation Features
-
-### **Cross-Browser Testing**
-```python
-@cross_browser_test("My Test", [BrowserType.CHROME, BrowserType.FIREFOX])
-def my_test():
-    open_page("https://example.com")
-    click("button")
-```
-
-### **E2E Test Framework**
-```python
-test_suite = create_e2e_test("Complete User Journey")
-test_suite.step("Login", lambda: UserJourney.login_flow())
-test_suite.step("Navigate", lambda: UserJourney.navigation_flow())
-test_suite.run_all()
-```
-
-### **Parallel Test Execution**
-```python
-# CLI Commands
-qastra run tests                    # Sequential execution
-qastra run tests --parallel 4       # Parallel with 4 workers
-qastra run tests --parallel 8       # Parallel with 8 workers
-
-# Performance: 100 tests @ 30s each
-# Sequential: 50 minutes
-# Parallel (8 workers): ~7 minutes
-# 7x faster execution!
-```
-
-### **HTML Test Reports**
-```python
-# CLI Commands - Reports generated automatically
-qastra run tests                    # Sequential + HTML report
-qastra run tests --parallel 4       # Parallel + HTML report
-
-# Features:
-- 📊 Professional HTML dashboard
-- 🌐 Auto-opens in browser (macOS)
-- ✅ Pass/Fail status with details
-- ⏱️ Execution timing and statistics
-- 📱 Mobile-responsive design
-- 🔍 Expandable error details
-```
-
-### **Test Recorder**
-```python
-# CLI Commands
-qastra record https://example.com
-qastra record https://example.com --duration 120
-qastra record https://example.com --output my_test.py
-
-# Workflow:
-# 1. Browser opens automatically
-# 2. Click around, type in forms
-# 3. Recorder captures actions
-# 4. Generates test file automatically
-# 5. Run: python recorded_test.py
-```
-
-### **Smart Assertions**
-```python
-expect_page_title("Dashboard")
-expect_url("dashboard")
-wait_for_element("profile", timeout=5000)
-```
-
-## Features
-
-### 🤖 AI Features (v0.2+)
-- 🧠 **Natural Language Understanding** - AI parses user intent
-- 🎯 **Context Awareness** - Understands position, color, descriptions
-- 📚 **Synonym Recognition** - "login" ≈ "sign in" ≈ "submit"
-- 📊 **Intent Confidence Scoring** - AI confidence levels
-- 🔍 **Semantic Matching** - Beyond text to meaning
-
-### 🚀 Automation Features
-- 🧠 **Smart locator engine** - Find elements by intent, not brittle XPath/CSS selectors
-- 🔄 **Self-healing elements** - Automatically adapts to UI changes
-- ✨ **Clean test DSL** - Write readable tests that anyone can understand
-- 🌐 **Cross-browser support** - Chrome, Firefox, Safari, Edge
-- 🖥️ **CLI test runner** - Run tests from command line
-- ⚡ **Parallel execution** - Run multiple tests simultaneously for 7x speed improvement
-- 🎬 **Test recorder** - Turn manual browser actions into automated tests
-- 📊 **HTML reports** - Professional test dashboard with auto-open
-- 🛡️ **Timeout protection** - Prevent hanging tests with 5-minute timeouts
-- 📱 **Mobile-responsive** - Reports work on all devices
-- ⚡ **Built on Playwright** - Reliable browser automation under the hood
-
-## Example
-
+### 🚀 Real Example
 ```python
 from qastra import *
 
-test("Login Test")
+@qastra
+def login_flow():
+    # Open login page
+    open_page("https://example.com/login")
+    
+    # Fill credentials (Qastra finds the fields)
+    type_into("username", "admin")
+    type_into("password", "secure123")
+    
+    # Click login button
+    click("login")
+    
+    # Verify success with assertions
+    expect_page_title_contains("Dashboard")
+    wait_for_element("welcome-message", timeout=5000)
+    
+    # Error handling
+    try:
+        click("user-profile")
+        print("✅ Login successful!")
+    except Exception as e:
+        print(f"❌ Login failed: {e}")
+        raise
 
-open_page("https://example.com")
-
-type_into("username", "admin")
-type_into("password", "1234")
-
-click("login")
-
-expect("Dashboard")
-```
-
-## Installation
-
-```bash
-pip install qastra
+if __name__ == "__main__":
+    login_flow()
 ```
 
 ## 🚀 Quick Start
@@ -197,25 +101,162 @@ qastra record https://example.com
 python recorded_test.py
 ```
 
+## � Examples by Scenario
+
+### 🎯 Core Test Flows
+- **[`login_flow_intent.py`](examples/login_flow_intent.py)** - Complete authentication with error handling
+- **[`ecommerce_checkout.py`](examples/ecommerce_test.py)** - Shopping cart to payment workflow  
+- **[`form_validation.py`](examples/form_validation.py)** - Form submission with validation testing
+- **[`multi_page_navigation.py`](examples/multi_page_test.py)** - Complex site navigation patterns
+
+### 🤖 AI-Powered Examples  
+- **[`visual_regression_demo.py`](examples/advanced/visual_regression_demo.py)** - AI-based visual testing
+- **[`intent_locators.py`](examples/advanced/intent_locators.py)** - Advanced AI locator strategies
+- **[`cross_browser_test.py`](examples/advanced/cross_browser_test.py)** - Multi-browser test execution
+
+### 📝 DSL vs Python
+**Qastra DSL (`.qa` files):**
+```qa
+# test_login.qa
+open_page "https://example.com/login"
+type_into "username" "admin"  
+type_into "password" "secure123"
+click "login"
+expect_page_title "Dashboard"
+```
+
+**Equivalent Python:**
+```python
+# test_login.py
+from qastra import *
+
+@qastra  
+def login_test():
+    open_page("https://example.com/login")
+    type_into("username", "admin")
+    type_into("password", "secure123") 
+    click("login")
+    expect_page_title("Dashboard")
+
+if __name__ == "__main__":
+    login_test()
+```
+
+## 🤖 AI Features
+
+**🧠 [Complete AI Features Guide](AI_FEATURES.md)**
+
+| Feature | What it does | When to use | Limitations |
+|---------|--------------|-------------|-------------|
+| **Natural Language Understanding** | Parses user intent from simple text | Complex UI descriptions | Requires clear context |
+| **Intent Confidence Scoring** | Provides match confidence (0-1) | Debugging locator issues | May need manual override |
+| **Synonym Recognition** | "login" ≈ "sign in" ≈ "submit" | Robust element matching | Limited to common terms |
+| **Self-Healing Locators** | Auto-adapts to UI changes | Long-running test suites | Requires fallback locators |
+
+### 🔍 Intent Matching Behavior
+
+**Tie-breaking Rules:**
+1. **Higher confidence score wins**
+2. **Element position matters** (top/left preferred)  
+3. **Semantic context** (form vs navigation)
+4. **Explicit locators override** (if provided)
+
+**Confidence Thresholds:**
+- `> 0.8`: High confidence - auto-select
+- `0.5-0.8`: Medium - verify with user
+- `< 0.5`: Low - require explicit locator
+
+**Override Examples:**
+```python
+# Force specific element
+click("login", selector="button[type='submit']")
+
+# Use multiple criteria  
+click("login", text="Sign In", role="button")
+```
+
+### 🔒 Privacy & Offline
+
+**AI Processing:**
+- ✅ **Local heuristics** - Pattern matching on DOM
+- ✅ **Offline capable** - No external API calls required  
+- ✅ **No data transmission** - Everything stays local
+- ⚠️ **Optional cloud models** - For enhanced accuracy (opt-in)
+
+## 🖥️ CLI Reference
+
+| Flag | Description | Example |
+|------|-------------|---------|
+| `--parallel` | Run tests in parallel | `--parallel 4` |
+| `--report` | Generate HTML report | `--report` |
+| `--browser` | Specify browser | `--browser firefox` |
+| `--timeout` | Set timeout (seconds) | `--timeout 30` |
+| `--output` | Custom report path | `--output ./reports` |
+| `--workers` | Number of parallel workers | `--workers 8` |
+
+### 📁 Typical Project Structure
+```
+my_project/
+├── tests/
+│   ├── login_flow.py
+│   ├── ecommerce.py
+│   └── api_tests.py
+├── config/
+│   └── qastra_config.json
+├── reports/          # Auto-generated HTML reports
+├── .qastra_cache/    # Locator cache
+├── requirements.txt
+└── pytest.ini       # If using pytest integration
+```
+
+### 🔄 CI Integration
+
+**GitHub Actions:**
+```yaml
+name: Qastra Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        pip install qastra
+        playwright install
+    - name: Run Qastra tests
+      run: qastra run tests/ --parallel 4 --report
+```
+
+**Integration with pytest:**
+```python
+# conftest.py
+import pytest
+from qastra import QastraTest
+
+@pytest.fixture
+def qastra_test():
+    return QastraTest()
+
+# test_example.py  
+def test_login_with_qastra(qastra_test):
+    qastra_test.open_page("https://example.com/login")
+    qastra_test.type_into("username", "admin")
+    qastra_test.click("login")
+```
+
 ## 📖 Documentation
 
 - **📋 [Installation Guide](INSTALLATION.md)** - Step-by-step setup for all systems
 - **⚡ [Quick Start Guide](QUICK_START.md)** - Learn Qastra in 5 minutes  
 - **🎬 [Examples](examples/)** - Ready-to-use test templates
-- **🤖 [AI Features](AI_FEATURES.md)** - Advanced automation capabilities
-
-## CLI Usage
-
-```bash
-# Run single test
-qastra run test_login.py
-
-# Run all tests in folder
-qastra run tests/
-
-# Run examples
-qastra run examples/
-```
+- **🧠 [AI Features](AI_FEATURES.md)** - Advanced automation capabilities
+- **🤝 [Contributing Guide](CONTRIBUTING.md)** - How to contribute
+- **🗺️ [Roadmap](ROADMAP.md)** - Future development plans
 
 ## Why Qastra?
 
