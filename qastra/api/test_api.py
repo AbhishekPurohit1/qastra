@@ -8,41 +8,40 @@ for writing clean, readable tests.
 import re
 import time
 from typing import Optional, Union, Dict, Any
-from playwright.sync_api import Page, Browser, BrowserContext, sync_playwright
 
 from ..engine.smart_locator import SmartLocator
 from ..ai.nlp.executor import NLPExecutor
+from ..browser.driver import driver
 
 
 class TestAPI:
     """Main test API class that handles test execution."""
     
     def __init__(self):
-        self.page: Optional[Page] = None
-        self.browser: Optional[Browser] = None
-        self.context: Optional[BrowserContext] = None
+        self.page = None
+        self.browser = None
+        self.context = None
         self.smart_locator: Optional[SmartLocator] = None
         self.nlp_executor: Optional[NLPExecutor] = None
         self.test_results = []
         
     def setup_browser(self, headless: bool = True):
-        """Setup browser and page."""
-        if not self.browser:
-            playwright = sync_playwright().start()
-            self.browser = playwright.chromium.launch(headless=headless)
-            self.context = self.browser.new_context()
-            self.page = self.context.new_page()
-            self.smart_locator = SmartLocator(self.page)
-            self.nlp_executor = NLPExecutor(self.page)
+        """Setup browser and page using the shared driver."""
+        if not driver.page:
+            driver.start({"headless": headless})
+
+        self.page = driver.page
+        self.browser = None
+        self.context = None
+        self.smart_locator = SmartLocator(self.page)
+        self.nlp_executor = NLPExecutor(headless=headless)
     
     def teardown_browser(self):
         """Cleanup browser resources."""
-        if self.page:
-            self.page.close()
-        if self.context:
-            self.context.close()
-        if self.browser:
-            self.browser.close()
+        driver.stop()
+        self.page = None
+        self.browser = None
+        self.context = None
     
     def test(self, instruction: str, timeout: int = 30000) -> Dict[str, Any]:
         """

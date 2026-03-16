@@ -3,12 +3,12 @@ Natural Language Test Executor - Executes parsed intents using Qastra framework.
 """
 
 import time
-from typing import Dict, Any, List, Tuple, Optional
-from playwright.sync_api import sync_playwright, Page, Browser
+from typing import Any, Dict, List, Tuple, Optional
 
 from .parser import NLPParser
 from .intent_engine import IntentEngine
 from ..self_healing import SelfHealingLocator
+from ...browser.driver import driver
 
 
 class NLPExecutor:
@@ -55,47 +55,40 @@ class NLPExecutor:
                 result['errors'].append('No valid actions generated')
                 return result
             
-            # Execute actions
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=self.headless)
-                page = browser.new_page()
-                
-                try:
-                    # Navigate to URL if provided
-                    if url:
-                        page.goto(url, wait_until="networkidle")
-                        result['actions_performed'].append(f"Navigated to {url}")
-                    else:
-                        # Try to extract URL from actions
-                        for action in valid_actions:
-                            if action[0] == 'navigate':
-                                page.goto(action[1], wait_until="networkidle")
-                                result['actions_performed'].append(f"Navigated to {action[1]}")
-                                break
-                        else:
-                            # Default to example.com if no URL provided
-                            page.goto("https://example.com", wait_until="networkidle")
-                            result['actions_performed'].append("Navigated to default URL: https://example.com")
-                    
-                    # Execute each action
-                    for action in valid_actions:
-                        success = self._execute_action(page, action, url or "https://example.com")
-                        if success:
-                            action_desc = self.intent_engine.get_action_descriptions([action])[0]
-                            result['actions_performed'].append(f"✅ {action_desc}")
-                        else:
-                            action_desc = self.intent_engine.get_action_descriptions([action])[0]
-                            result['actions_performed'].append(f"❌ {action_desc}")
-                            result['errors'].append(f"Failed to execute: {action_desc}")
-                    
-                    result['status'] = 'completed'
-                
-                except Exception as e:
-                    result['status'] = 'failed'
-                    result['errors'].append(str(e))
-                
-                finally:
-                    browser.close()
+            # Ensure browser is running
+            if not driver.page:
+                driver.start({"headless": self.headless})
+
+            page = driver.page
+
+            # Navigate to URL if provided
+            if url:
+                page.goto(url, wait_until="networkidle")
+                result['actions_performed'].append(f"Navigated to {url}")
+            else:
+                # Try to extract URL from actions
+                for action in valid_actions:
+                    if action[0] == 'navigate':
+                        page.goto(action[1], wait_until="networkidle")
+                        result['actions_performed'].append(f"Navigated to {action[1]}")
+                        break
+                else:
+                    # Default to example.com if no URL provided
+                    page.goto("https://example.com", wait_until="networkidle")
+                    result['actions_performed'].append("Navigated to default URL: https://example.com")
+
+            # Execute each action
+            for action in valid_actions:
+                success = self._execute_action(page, action, url or "https://example.com")
+                if success:
+                    action_desc = self.intent_engine.get_action_descriptions([action])[0]
+                    result['actions_performed'].append(f"✅ {action_desc}")
+                else:
+                    action_desc = self.intent_engine.get_action_descriptions([action])[0]
+                    result['actions_performed'].append(f"❌ {action_desc}")
+                    result['errors'].append(f"Failed to execute: {action_desc}")
+
+            result['status'] = 'completed'
         
         except Exception as e:
             result['status'] = 'error'
@@ -108,7 +101,7 @@ class NLPExecutor:
         
         return result
     
-    def _execute_action(self, page: Page, action: Tuple, url: str) -> bool:
+    def _execute_action(self, page: Any, action: Tuple, url: str) -> bool:
         """Execute a single action using Qastra framework."""
         action_type = action[0]
         

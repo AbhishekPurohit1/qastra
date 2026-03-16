@@ -1,4 +1,4 @@
-from qastra.browser.browser import browser
+from qastra.browser.driver import driver
 from qastra.engine.locator_engine import find_element
 
 
@@ -8,18 +8,20 @@ def open_page(url):
     Args:
         url (str): The URL to navigate to
     """
-    browser.open(url)
-    # Wait for page to load and be ready
-    if browser.page:
-        browser.page.wait_for_load_state("networkidle", timeout=10000)
+    if not driver.page:
+        driver.start()
+    driver.open(url)
+    if driver.page:
+        driver.page.wait_for_load_state("networkidle", timeout=10000)
 
 
 def click(label):
-
-    element = find_element(browser.page, label)
+    if not driver.page:
+        driver.start()
+    element = find_element(driver.page, label)
 
     if element:
-        browser.click(element)
+        driver.click_element(element)
     else:
         raise Exception(f"{label} not found")
 
@@ -31,9 +33,11 @@ def type_into(label, value):
         label (str): The label/locator for the element
         value (str): The text to type
     """
-    element = find_element(browser.page, label)
+    if not driver.page:
+        driver.start()
+    element = find_element(driver.page, label)
 
     if element:
-        browser.type(element, value)
+        driver.type_into(element, value)
     else:
         raise Exception(f"{label} not found")
