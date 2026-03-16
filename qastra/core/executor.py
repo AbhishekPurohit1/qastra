@@ -7,55 +7,90 @@ we can swap out the underlying automation engine later.
 
 from __future__ import annotations
 
-from typing import List
+from typing import Iterable, List
 
-from qastra.browser.actions import open_page, click, type_into
-from qastra.browser.driver import driver
-from qastra.core.parser import QACommand
-from qastra.core.assertions import expect
+from qastra.browser.actions import open_page, click, type_text, verify_text, close_driver
+from qastra.core.parser import CommandTuple
 from qastra.utils.logger import get_logger
 
 
 logger = get_logger("core.executor")
 
 
-def execute_commands(commands: List[QACommand]) -> None:
-    """Execute a list of QACommand objects sequentially."""
-    if not commands:
+def _log_step(message: str) -> None:
+    print(f"[STEP] {message}")
+    logger.info(message)
+
+
+def execute_commands(commands: Iterable[CommandTuple]) -> None:
+    """Execute a sequence of parsed command tuples sequentially.
+
+    Each command is a tuple of:
+        ("open", url: str)
+        ("click", element_name: str)
+        ("type", (text: str, element_name: str))
+        ("verify", text: str)
+        ("raw", text: str)   # best-effort verification
+    """
+    commands_list: List[CommandTuple] = list(commands)
+    if not commands_list:
         logger.warning("No commands to execute.")
         return
 
-    driver.start()
+    all_passed = True
+
     try:
-        for cmd in commands:
-            logger.info("Executing command: %s", cmd)
+        for action, payload in commands_list:
+            try:
+                if action == "open":
+                    url = str(payload)
+                    _log_step(f"open {url}")
+                    open_page(url)
 
-            if cmd.action == "open" and cmd.target:
-                print(f"➡️  open {cmd.target}")
-                open_page(cmd.target)
+                elif action == "click":
+                    target = str(payload)
+                    _log_step(f"click {target}")
+                    click(target)
 
-            elif cmd.action == "click" and cmd.target:
-                print(f"🖱️  click \"{cmd.target}\"")
-                click(cmd.target)
+                elif action == "type":
+                    text, element_name = payload  # type: ignore[misc]
+                    _log_step(f"type '{text}' into {element_name}")
+                    type_text(text, element_name)
 
-            elif cmd.action == "type" and cmd.target and cmd.value is not None:
-                print(f"⌨️  type \"{cmd.value}\" into \"{cmd.target}\"")
-                type_into(cmd.target, cmd.value)
+                elif action == "verify":
+                    text = str(payload)
+                    _log_step(f"verify '{text}'")
+                    if not verify_text(text):
+                        print("[FAIL]")
+                        logger.error("Verification failed for text: %s", text)
+                        all_passed = False
+                        break
+                    print("[PASS]")
 
-            elif cmd.action == "verify" and cmd.target:
-                print(f"🔍 verify \"{cmd.target}\"")
-                expect(cmd.target)  # string mode checks presence in page content
+                elif action == "raw":
+                    text = str(payload)
+                    _log_step(f"raw '{text}'")
+                    if not verify_text(text):
+                        print("[FAIL]")
+                        logger.error("Raw step failed to verify text: %s", text)
+                        all_passed = False
+                        break
+                    print("[PASS]")
 
-            elif cmd.action == "raw" and cmd.target:
-                # For now, treat unknown lines as a simple verification.
-                print(f"🔹 raw step: {cmd.target}")
-                expect(cmd.target)
+                else:
+                    logger.warning("Unsupported command action: %s", action)
 
-            else:
-                logger.warning("Unsupported command: %s", cmd)
+            except Exception as exc:  # noqa: BLE001
+                all_passed = False
+                print("[FAIL]")
+                logger.error("Error executing command (%s, %s): %s", action, payload, exc)
+                break
 
     finally:
-        driver.stop()
+        close_driver()
+
+    if all_passed:
+        print("[PASS]")
 
 
 __all__ = ["execute_commands"]

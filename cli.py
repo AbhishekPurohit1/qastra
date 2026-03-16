@@ -6,10 +6,11 @@ Qastra CLI - Command line interface for the AI-powered test automation framework
 import argparse
 import os
 import sys
-import asyncio
 from pathlib import Path
 
 from runner import QastraRunner
+from qastra.core.parser import parse_qa_file_to_commands
+from qastra.core.executor import execute_commands
 
 
 def create_parser():
@@ -159,7 +160,20 @@ def cmd_run(args):
     print(f"🚀 Running tests from: {args.target}")
     
     if os.path.isfile(args.target):
-        # Run single test file
+        # `.qa` test file → use parser + executor pipeline
+        if args.target.endswith(".qa"):
+            from qastra.browser.actions import close_driver
+
+            print(f"🧪 Running Qastra DSL test: {args.target}")
+            try:
+                commands = parse_qa_file_to_commands(args.target)
+                execute_commands(commands)
+            finally:
+                # Ensure browser is closed even if something goes wrong
+                close_driver()
+            return 0
+
+        # Fallback: run Python test file with classic runner
         result = runner.run_test_file(args.target, args.headless)
         
         print(f"\n{'='*50}")

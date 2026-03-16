@@ -41,10 +41,11 @@ qastra run tests --parallel 4
 ## Features
 
 ### 🤖 AI-Powered Testing
-- Natural language test instructions
-- Smart element location
-- Self-healing selectors
-- Intent-based automation
+- Natural language test instructions (English + Hinglish)
+- Qastra `.qa` DSL for scriptable tests
+- Smart element location with AI-inspired strategies
+- Self-healing selectors and locator caching
+- Intent-based automation from plain language
 
 ### 🎯 Smart Locator Engine
 - Multiple fallback strategies
@@ -150,6 +151,10 @@ Run tests from a Qastra `.qa` file or from Python test files.
 # Qastra DSL
 qastra run examples/login.qa
 
+# Hinglish / natural language style (via Python API)
+# test("amazon open karo")
+# test('"iphone 15" search karo')
+
 # Single Python file
 qastra run examples/demo_test.py
 
@@ -239,7 +244,9 @@ qastra visual --baseline baseline.png
 
 ### AI Test Generation
 
-> Note: The new `.qa` DSL and CLI flow is the recommended entrypoint for most users.
+> Note: The new `.qa` DSL + Selenium-powered browser engine and the `qastra run` CLI
+> provide the simplest entrypoint for most users. Advanced users can still use the
+> Playwright-based APIs, visual testing, and AI-generated tests described above.
 
 ## Configuration
 
