@@ -5,11 +5,12 @@ import time
 from qastra.reporter.reporter import generate_report
 
 
-def run_single_test(test_file_path):
+def run_single_test(test_file_path, debug=False):
     """Run a single test file with proper environment.
     
     Args:
         test_file_path (str): Full path to the test file
+        debug (bool): Enable debug mode with detailed logging
         
     Returns:
         dict: Test result with file path, status, output, and execution time
@@ -19,6 +20,12 @@ def run_single_test(test_file_path):
     
     # Set up environment for this test
     env = {**os.environ, "PYTHONPATH": "/Users/apple/Desktop/All Data/Qastra"}
+    
+    if debug:
+        print(f"[DEBUG] Running test: {file_name}")
+        print(f"[DEBUG] Path: {test_file_path}")
+        print(f"[DEBUG] Environment: PYTHONPATH={env['PYTHONPATH']}")
+        print()
     
     try:
         result = subprocess.run(
@@ -31,23 +38,37 @@ def run_single_test(test_file_path):
         
         execution_time = time.time() - start_time
         
+        if debug:
+            print(f"[DEBUG] Test completed in {execution_time:.2f}s")
+            print(f"[DEBUG] Return code: {result.returncode}")
+            if result.stdout:
+                print(f"[DEBUG] STDOUT:\n{result.stdout}")
+            if result.stderr:
+                print(f"[DEBUG] STDERR:\n{result.stderr}")
+            print()
+        
         return {
             "file": file_name,
             "path": test_file_path,
             "status": "passed" if result.returncode == 0 else "failed",
             "output": result.stdout,
             "error": result.stderr,
-            "execution_time": execution_time
+            "execution_time": execution_time,
+            "returncode": result.returncode
         }
         
     except subprocess.TimeoutExpired:
+        if debug:
+            print(f"[DEBUG] Test timed out after 5 minutes")
+        
         return {
             "file": file_name,
             "path": test_file_path,
             "status": "timeout",
             "output": "",
             "error": "Test timed out after 5 minutes",
-            "execution_time": time.time() - start_time
+            "execution_time": time.time() - start_time,
+            "returncode": -1
         }
     except Exception as e:
         return {
@@ -60,96 +81,63 @@ def run_single_test(test_file_path):
         }
 
 
-def run_tests_parallel(folder, workers=4):
-    """Run all Python test files in a folder using multiple workers.
+def run_tests_parallel(test_dir, workers=4, debug=False):
+    """Run all Python test files in a directory using multiprocessing.
     
     Args:
-        folder (str): Path to the folder containing test files
+        test_dir (str): Directory containing test files
         workers (int): Number of parallel workers
+        debug (bool): Enable debug mode with detailed logging
     """
-    print(f"\n[Qastra] Running tests in PARALLEL mode")
-    print(f"📁 Folder: {folder}")
-    print(f"🔧 Workers: {workers}")
-    print("=" * 60)
+    if not os.path.exists(test_dir):
+        print(f"❌ Directory not found: {test_dir}")
+        return []
     
-    # Find all test files
+    # Find all Python test files
     test_files = []
-    for file in os.listdir(folder):
-        if file.endswith(".py") and not file.startswith("__"):
-            test_files.append(os.path.join(folder, file))
+    for file in os.listdir(test_dir):
+        if file.endswith('.py') and not file.startswith('__'):
+            test_files.append(os.path.join(test_dir, file))
     
     if not test_files:
-        print("[Qastra] No test files found!")
-        return
+        print(f"❌ No test files found in: {test_dir}")
+        return []
     
-    print(f"📋 Found {len(test_files)} test files")
-    print(f"🚀 Starting parallel execution...")
-    print("-" * 60)
+    print(f"🚀 Running {len(test_files)} test(s) in parallel with {workers} workers...")
+    if debug:
+        print(f"[DEBUG] Test files found: {test_files}")
+        print(f"[DEBUG] Using {workers} parallel workers")
+        print()
+    
+    # Create wrapper function that includes debug flag
+    def run_with_debug(test_file):
+        return run_single_test(test_file, debug=debug)
     
     # Run tests in parallel
-    start_time = time.time()
-    
     with Pool(workers) as pool:
-        results = pool.map(run_single_test, test_files)
+        results = pool.map(run_with_debug, test_files)
     
-    end_time = time.time()
-    total_time = end_time - start_time
+    # Sort results by execution time for display
+    results.sort(key=lambda x: x['execution_time'])
     
-    # Process and display results
-    passed = 0
-    failed = 0
-    timeouts = 0
-    errors = 0
-    
-    print("\n📊 PARALLEL TEST RESULTS:")
-    print("=" * 60)
-    
+    # Print results
     for result in results:
-        status_icon = ""
-        if result["status"] == "passed":
-            status_icon = "✅"
-            passed += 1
-        elif result["status"] == "failed":
-            status_icon = "❌"
-            failed += 1
-        elif result["status"] == "timeout":
-            status_icon = "⏰"
-            timeouts += 1
-        else:
-            status_icon = "💥"
-            errors += 1
-            
-        print(f"{status_icon} {result['file']} ({result['execution_time']:.1f}s)")
+        status_icon = "✅" if result["status"] == "passed" else "❌"
+        print(f"{status_icon} {result['file']} ({result['execution_time']:.2f}s)")
         
-        if result["status"] == "failed" and result["error"]:
+        if result["status"] == "failed":
             print(f"   Error: {result['error'][:100]}...")
-        elif result["status"] == "timeout":
-            print(f"   ⚠️ Test timed out")
-        elif result["status"] == "error":
-            print(f"   💥 {result['error']}")
     
     # Summary
-    print("-" * 60)
-    print(f"📈 SUMMARY:")
-    print(f"   Total: {len(results)} tests")
-    print(f"   ✅ Passed: {passed}")
-    print(f"   ❌ Failed: {failed}")
-    print(f"   ⏰ Timeouts: {timeouts}")
-    print(f"   💥 Errors: {errors}")
-    print(f"   ⏱️  Total time: {total_time:.1f}s")
-    print(f"   🔥 Workers: {workers}")
+    passed = sum(1 for r in results if r["status"] == "passed")
+    failed = len(results) - passed
     
-    if workers > 1:
-        estimated_sequential_time = sum(r["execution_time"] for r in results)
-        time_saved = estimated_sequential_time - total_time
-        print(f"   ⚡ Time saved: ~{time_saved:.1f}s ({(time_saved/estimated_sequential_time*100):.0f}% faster)")
+    print(f"\n📊 Results: {passed} passed, {failed} failed")
     
-    # Generate HTML report
-    print("\n📊 Generating HTML report...")
-    try:
-        generate_report(results, start_time, end_time, auto_open=True)
-    except Exception as e:
-        print(f"⚠️ Could not generate HTML report: {e}")
+    # Calculate performance metrics
+    total_time = sum(r['execution_time'] for r in results)
+    avg_time = total_time / len(results)
+    print(f"⚠️ Could not generate HTML report: {e}")
 
 
 def run_tests(folder):

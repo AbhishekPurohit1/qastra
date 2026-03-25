@@ -11,19 +11,18 @@ def test_login():
         browser = p.chromium.launch()
         page = browser.new_page()
         
-        # Navigate to login page
-        page.goto("https://example.com/login")
+        # Navigate to a real test site
+        page.goto("https://www.saucedemo.com/")
         
-        # Fill login form - these locators will be "broken" for demo
-        page.fill("#signin-btn", "test@example.com")  # This is wrong - should be an input
-        page.fill("input[name='username']", "testuser")  # This locator will change
-        page.fill("input[name='password']", "password123")
+        # Fill login form with working selectors
+        page.fill("#user-name", "standard_user")
+        page.fill("#password", "secret_sauce")
         
         # Click login button
-        page.click("#signin-btn")  # This locator will change
+        page.click("#login-button")
         
-        # Verify login
-        page.wait_for_selector("#dashboard")
+        # Verify login successful
+        page.wait_for_selector(".app_logo")
         
         browser.close()
 
@@ -33,14 +32,20 @@ def test_search():
         browser = p.chromium.launch()
         page = browser.new_page()
         
-        page.goto("https://example.com")
+        # Go to homepage first, then navigate to inventory
+        page.goto("https://www.saucedemo.com/")
+        page.fill("#user-name", "standard_user")
+        page.fill("#password", "secret_sauce")
+        page.click("#login-button")
         
-        # Search for something
-        page.fill("#search-field", "test query")
-        page.click("#search-btn")
+        # Wait for inventory page to load
+        page.wait_for_selector(".inventory_item")
         
-        # Verify results
-        page.wait_for_selector(".search-results")
+        # Test sorting functionality
+        page.select_option(".product_sort_container", "Name (A to Z)")
+        
+        # Verify products are still displayed
+        page.wait_for_selector(".inventory_item")
         
         browser.close()
 

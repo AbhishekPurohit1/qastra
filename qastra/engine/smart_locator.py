@@ -350,13 +350,64 @@ class SmartLocator:
         
         return benchmark
 
+def debug_find_attempts(self, intent: str) -> List[Dict[str, Any]]:
+    """
+    Debug method to show all locator attempts for an intent.
+    
+    Args:
+        intent: The intent string to search for
+        
+    Returns:
+        List of attempts with scores and elements
+    """
+    attempts = []
+    
+    # Get all candidate elements
+    elements = self.scanner.scan_page(self.page)
+    
+    for element in elements:
+        try:
+            score, explanations = self._calculate_score(element, intent)
+            attempts.append({
+                'element': self._get_element_description(element),
+                'score': score,
+                'explanations': explanations
+            })
+        except Exception:
+            continue
+    
+    # Sort by score (highest first)
+    attempts.sort(key=lambda x: x['score'], reverse=True)
+    return attempts[:5]  # Return top 5 attempts
+
+def _get_element_description(self, element) -> str:
+    """Get a human-readable description of an element."""
+    try:
+        tag = element.evaluate("el => el.tagName")
+        text = element.inner_text() or ""
+        text = text[:20] + "..." if len(text) > 20 else text
+        id_attr = element.get_attribute("id") or ""
+        class_attr = element.get_attribute("class") or ""
+        
+        if id_attr:
+            return f"{tag}#{id_attr}"
+        elif class_attr:
+            classes = class_attr.split()[:2]  # First 2 classes
+            return f"{tag}.{'.'.join(classes)}"
+        elif text:
+            return f"{tag}[text='{text}']"
+        else:
+            return tag
+            
+    except Exception:
+        return "unknown"
+
 
 # Convenience functions
 def find_element(page, intent: str, element_type: Optional[str] = None) -> Tuple[Optional[Any], Dict[str, Any]]:
     """Quick function to find element by intent."""
     locator = SmartLocator()
     return locator.find_element(page, intent, element_type)
-
 
 def find_all_matches(page, intent: str, max_results: int = 5) -> List[Tuple[Any, Dict[str, Any]]]:
     """Quick function to find all matching elements."""

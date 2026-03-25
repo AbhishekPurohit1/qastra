@@ -11,7 +11,7 @@ from qastra.engine.fingerprint import get_fingerprint
 from qastra.utils.history import save_fingerprint, load_fingerprint
 
 # Candidate elements: clickable and focusable (spec)
-CANDIDATE_SELECTOR = "button, a, input, textarea, [type=submit], [type=button]"
+CANDIDATE_SELECTOR = "button, a, input, textarea, select, [type=submit], [type=button], [role=button], [role=link], [onclick], [tabindex]:not([tabindex='-1'])"
 
 
 def _smart_find(page, label):

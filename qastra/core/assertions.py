@@ -65,7 +65,14 @@ def expect(element):
     """Create expectation for element."""
     if isinstance(element, str):
         # Legacy support for string expectations
-        page_content = browser.page.content()
+        import sys
+        page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+        
+        if page:
+            page_content = page.content()
+        else:
+            page_content = browser.page.content()
+            
         if element not in page_content:
             raise Exception(f"{element} not found on page")
         return Expect(None)
@@ -73,10 +80,14 @@ def expect(element):
 
 def expect_page_title(title, timeout=5000):
     """Expect page to have specific title."""
+    import sys
+    page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+    
     start_time = time.time()
     while time.time() - start_time < timeout / 1000:
         try:
-            if browser.page and browser.page.title() == title:
+            current_page = page or browser.page
+            if current_page and current_page.title() == title:
                 print(f"✅ Page title is: '{title}'")
                 return True
         except:
@@ -86,10 +97,14 @@ def expect_page_title(title, timeout=5000):
 
 def expect_url(url, timeout=5000):
     """Expect page to have specific URL."""
+    import sys
+    page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+    
     start_time = time.time()
     while time.time() - start_time < timeout / 1000:
         try:
-            if browser.page and url in browser.page.url:
+            current_page = page or browser.page
+            if current_page and url in current_page.url:
                 print(f"✅ Page URL contains: '{url}'")
                 return True
         except:
@@ -99,10 +114,14 @@ def expect_url(url, timeout=5000):
 
 def expect_page_title_contains(title, timeout=5000):
     """Expect page title to contain specific text."""
+    import sys
+    page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+    
     start_time = time.time()
     while time.time() - start_time < timeout / 1000:
         try:
-            if browser.page and title in browser.page.title():
+            current_page = page or browser.page
+            if current_page and title in current_page.title():
                 print(f"✅ Page title contains: '{title}'")
                 return True
         except:
@@ -113,9 +132,13 @@ def expect_page_title_contains(title, timeout=5000):
 def wait_for_element(label, timeout=5000):
     """Wait for element to appear."""
     from qastra.engine.locator_engine import find_element
+    import sys
+    page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+    
     start_time = time.time()
     while time.time() - start_time < timeout / 1000:
-        element = find_element(browser.page, label)
+        current_page = page or browser.page
+        element = find_element(current_page, label)
         if element:
             print(f"✅ Element found: '{label}'")
             return element

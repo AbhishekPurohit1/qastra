@@ -2,9 +2,9 @@
   "ai_assist_result": {
     "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
     "status": "completed",
-    "start_time": 1773579463.332747,
-    "end_time": 1773579470.1259232,
-    "duration": 6.793176174163818,
+    "start_time": 1774412170.391029,
+    "end_time": 1774412180.408105,
+    "duration": 10.017076015472412,
     "error": null,
     "elements_found": 3,
     "actions_performed": [

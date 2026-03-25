@@ -1,0 +1,306 @@
+{
+  "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+  "page_title": "OrangeHRM",
+  "test_name": "orangehrm_login_test_fixed",
+  "generated_at": "2026-03-25T09:52:12.631512",
+  "elements_found": 3,
+  "page_structure": {
+    "forms": [
+      {
+        "action": "/web/index.php/auth/validate",
+        "method": "POST",
+        "id": "",
+        "class": "oxd-form",
+        "inputs": [
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "_token",
+            "id": "",
+            "class": "",
+            "placeholder": "",
+            "value": "7be9934becff.64cBwUTrj4FC3Xog20YZE349qAVB5Zx9irMIeGRKUcY.gepQ7HatzecgrzNMujF3JQdF8lYYiM9JxPhGQB0cJYmi0UmnFIO91BS-Mw",
+            "required": false,
+            "disabled": false,
+            "readonly": false,
+            "text": "",
+            "selector": "input[name='_token'][type='hidden']",
+            "test_value": "test value"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "username",
+            "id": "",
+            "class": "oxd-input oxd-input--focus",
+            "placeholder": "Username",
+            "value": "",
+            "required": false,
+            "disabled": false,
+            "readonly": false,
+            "text": "",
+            "selector": ".oxd-input",
+            "test_value": "testuser"
+          },
+          {
+            "tag": "input",
+            "type": "password",
+            "name": "password",
+            "id": "",
+            "class": "oxd-input oxd-input--active",
+            "placeholder": "Password",
+            "value": "",
+            "required": false,
+            "disabled": false,
+            "readonly": false,
+            "text": "",
+            "selector": ".oxd-input",
+            "test_value": "TestPassword123"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "button",
+            "type": "submit",
+            "text": "Login",
+            "value": "",
+            "id": "",
+            "class": "oxd-button oxd-button--medium oxd-button--main orangehrm-login-button",
+            "title": "",
+            "disabled": false,
+            "selector": ".oxd-button",
+            "action_type": "submit"
+          }
+        ],
+        "submit_button": {
+          "tag": "button",
+          "type": "submit",
+          "text": "Login",
+          "value": "",
+          "id": "",
+          "class": "oxd-button oxd-button--medium oxd-button--main orangehrm-login-button",
+          "title": "",
+          "disabled": false,
+          "selector": ".oxd-button",
+          "action_type": "submit"
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "hidden",
+        "name": "_token",
+        "id": "",
+        "class": "",
+        "placeholder": "",
+        "value": "7be9934becff.64cBwUTrj4FC3Xog20YZE349qAVB5Zx9irMIeGRKUcY.gepQ7HatzecgrzNMujF3JQdF8lYYiM9JxPhGQB0cJYmi0UmnFIO91BS-Mw",
+        "required": false,
+        "disabled": false,
+        "readonly": false,
+        "text": "",
+        "selector": "input[name='_token'][type='hidden']",
+        "test_value": "test value"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "name": "username",
+        "id": "",
+        "class": "oxd-input oxd-input--focus",
+        "placeholder": "Username",
+        "value": "",
+        "required": false,
+        "disabled": false,
+        "readonly": false,
+        "text": "",
+        "selector": ".oxd-input",
+        "test_value": "testuser"
+      },
+      {
+        "tag": "input",
+        "type": "password",
+        "name": "password",
+        "id": "",
+        "class": "oxd-input oxd-input--active",
+        "placeholder": "Password",
+        "value": "",
+        "required": false,
+        "disabled": false,
+        "readonly": false,
+        "text": "",
+        "selector": ".oxd-input",
+        "test_value": "TestPassword123"
+      }
+    ],
+    "buttons": [
+      {
+        "tag": "button",
+        "type": "submit",
+        "text": "Login",
+        "value": "",
+        "id": "",
+        "class": "oxd-button oxd-button--medium oxd-button--main orangehrm-login-button",
+        "title": "",
+        "disabled": false,
+        "selector": ".oxd-button",
+        "action_type": "submit"
+      }
+    ],
+    "links": [
+      {
+        "text": "OrangeHRM, Inc",
+        "href": "http://www.orangehrm.com",
+        "id": "",
+        "class": "",
+        "title": "",
+        "target": "_blank",
+        "is_external": true,
+        "selector": "a"
+      }
+    ],
+    "interactive_elements": [
+      {
+        "tag": "button",
+        "text": "Login",
+        "id": "",
+        "class": "oxd-button oxd-button--medium oxd-button--main orangehrm-login-button",
+        "attributes": {
+          "data-v-10d463b7": "",
+          "data-v-0af708be": "",
+          "type": "submit",
+          "class": [
+            "oxd-button",
+            "oxd-button--medium",
+            "oxd-button--main",
+            "orangehrm-login-button"
+          ]
+        },
+        "selector": ".oxd-button",
+        "is_interactive": true
+      },
+      {
+        "tag": "input",
+        "text": "",
+        "id": "",
+        "class": "",
+        "attributes": {
+          "data-v-0af708be": "",
+          "name": "_token",
+          "type": "hidden",
+          "value": "7be9934becff.64cBwUTrj4FC3Xog20YZE349qAVB5Zx9irMIeGRKUcY.gepQ7HatzecgrzNMujF3JQdF8lYYiM9JxPhGQB0cJYmi0UmnFIO91BS-Mw"
+        },
+        "selector": "input[name='_token'][type='hidden']",
+        "is_interactive": true
+      },
+      {
+        "tag": "input",
+        "text": "",
+        "id": "",
+        "class": "oxd-input oxd-input--focus",
+        "attributes": {
+          "data-v-1f99f73c": "",
+          "class": [
+            "oxd-input",
+            "oxd-input--focus"
+          ],
+          "name": "username",
+          "placeholder": "Username",
+          "autofocus": ""
+        },
+        "selector": ".oxd-input",
+        "is_interactive": true
+      },
+      {
+        "tag": "input",
+        "text": "",
+        "id": "",
+        "class": "oxd-input oxd-input--active",
+        "attributes": {
+          "data-v-1f99f73c": "",
+          "class": [
+            "oxd-input",
+            "oxd-input--active"
+          ],
+          "type": "password",
+          "name": "password",
+          "placeholder": "Password"
+        },
+        "selector": ".oxd-input",
+        "is_interactive": true
+      },
+      {
+        "tag": "a",
+        "text": "",
+        "id": "",
+        "class": "",
+        "attributes": {
+          "data-v-0af708be": "",
+          "href": "https://www.linkedin.com/company/orangehrm/mycompany/",
+          "target": "_blank"
+        },
+        "selector": "a",
+        "is_interactive": true
+      },
+      {
+        "tag": "a",
+        "text": "",
+        "id": "",
+        "class": "",
+        "attributes": {
+          "data-v-0af708be": "",
+          "href": "https://www.facebook.com/OrangeHRM/",
+          "target": "_blank"
+        },
+        "selector": "a",
+        "is_interactive": true
+      },
+      {
+        "tag": "a",
+        "text": "",
+        "id": "",
+        "class": "",
+        "attributes": {
+          "data-v-0af708be": "",
+          "href": "https://twitter.com/orangehrm?lang=en",
+          "target": "_blank"
+        },
+        "selector": "a",
+        "is_interactive": true
+      },
+      {
+        "tag": "a",
+        "text": "",
+        "id": "",
+        "class": "",
+        "attributes": {
+          "data-v-0af708be": "",
+          "href": "https://www.youtube.com/c/OrangeHRMInc",
+          "target": "_blank"
+        },
+        "selector": "a",
+        "is_interactive": true
+      },
+      {
+        "tag": "a",
+        "text": "OrangeHRM, Inc",
+        "id": "",
+        "class": "",
+        "attributes": {
+          "href": "http://www.orangehrm.com",
+          "target": "_blank"
+        },
+        "selector": "a",
+        "is_interactive": true
+      }
+    ],
+    "page_info": {
+      "title": "OrangeHRM",
+      "total_forms": 1,
+      "total_inputs": 3,
+      "total_buttons": 1,
+      "total_links": 1,
+      "total_interactive": 9
+    }
+  }
+}

@@ -1,26 +1,36 @@
 {
-  "sentence": "open https://example.com",
+  "sentence": "fill username with admin and password with admin123 then click login",
   "status": "completed",
-  "start_time": 1773586632.332376,
-  "end_time": 1773586634.661421,
-  "duration": 2.329045057296753,
+  "start_time": 1774412567.760499,
+  "end_time": 1774412581.393335,
+  "duration": 13.632836103439331,
   "actions_performed": [
-    "Navigated to https://example.com",
-    "\u2705 Navigate to https://example.com"
+    "Navigated to https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "\u2705 Click element"
   ],
   "errors": [],
   "parsed_intent": {
-    "intent": "navigate",
+    "intent": "click",
     "confidence": 0.8,
-    "raw_sentence": "open https://example.com",
+    "raw_sentence": "fill username with admin and password with admin123 then click login",
     "extracted_data": {
-      "destination": "https://example.com"
+      "target": "login"
     }
   },
   "generated_actions": [
     [
-      "navigate",
-      "https://example.com"
+      "click",
+      [
+        "text=\"login\"",
+        "*:has-text(\"login\")",
+        "button:has-text(\"login\")",
+        "a:has-text(\"login\")",
+        "button:has-text(\"Login\")",
+        "button:has-text(\"Sign In\")",
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "button:has-text(\"Submit\")"
+      ]
     ]
   ]
 }

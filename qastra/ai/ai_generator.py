@@ -160,6 +160,8 @@ if __name__ == "__main__":
         # Extract domain from URL
         from urllib.parse import urlparse
         domain = urlparse(url).netloc.replace('www.', '')
+        # Replace dots with underscores to make valid function names
+        domain = domain.replace('.', '_')
         
         # Clean title
         clean_title = ''.join(c for c in page_title if c.isalnum() or c in (' ', '-', '_')).rstrip()
@@ -262,12 +264,13 @@ if __name__ == "__main__":
         action_type = button_data.get('action_type', 'click')
         
         # Add comment
-        if not comment:
+        if comment:
+            step = f'{indent}# {comment}\n'
+        else:
             comment = f"# {action_type.title()} button"
             if button_text:
                 comment += f" ({button_text})"
-        
-        step = f'{indent}{comment}\n'
+            step = f'{indent}{comment}\n'
         
         # Add waiting for button to be visible
         step += f'{indent}page.wait_for_selector("{selector}", state="visible")\n'

@@ -66,9 +66,9 @@
     "id": null
   },
   "dashboard": {
-    "tag": "A",
-    "text": "Dashboard",
-    "class": "oxd-main-menu-item active",
+    "tag": "HTML",
+    "text": "",
+    "class": null,
     "id": null
   },
   "nonexistent_button_that_cannot_be_found": {

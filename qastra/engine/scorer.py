@@ -19,23 +19,33 @@ def score_element(element, label):
     Whichever element gets highest score wins.
     """
     score = 0
+    label_lower = label.lower()
 
     # 1. Text matching — exact = +50, partial = +30
     try:
         text = element.inner_text()
         if text is not None:
             text = text.strip()
-            if label.lower() == text.lower():
+            text_lower = text.lower()
+            
+            # Exact match
+            if label_lower == text_lower:
                 score += SCORE_EXACT_TEXT
-            elif label.lower() in text.lower():
+            # Partial match in both directions
+            elif label_lower in text_lower:
                 score += SCORE_PARTIAL_TEXT
+            elif text_lower in label_lower:
+                score += SCORE_PARTIAL_TEXT
+            # Word-level matching for phrases
+            elif any(word in text_lower for word in label_lower.split() if len(word) > 2):
+                score += 15
     except Exception:
         pass
 
     # 2. ARIA attributes — aria-label contains keyword = +40
     try:
         aria = element.get_attribute("aria-label")
-        if aria and label.lower() in aria.lower():
+        if aria and label_lower in aria.lower():
             score += SCORE_ARIA_LABEL
     except Exception:
         pass
@@ -43,7 +53,7 @@ def score_element(element, label):
     # 3. Placeholder (for inputs) — placeholder match = +40
     try:
         placeholder = element.get_attribute("placeholder")
-        if placeholder and label.lower() in placeholder.lower():
+        if placeholder and label_lower in placeholder.lower():
             score += SCORE_PLACEHOLDER
     except Exception:
         pass
@@ -51,7 +61,7 @@ def score_element(element, label):
     # 3.5. Name attribute — for form inputs = +35
     try:
         name = element.get_attribute("name")
-        if name and label.lower() in name.lower():
+        if name and label_lower in name.lower():
             score += 35
     except Exception:
         pass
@@ -59,8 +69,10 @@ def score_element(element, label):
     # 3.6. ID attribute — exact match = +45
     try:
         element_id = element.get_attribute("id")
-        if element_id and label.lower() == element_id.lower():
+        if element_id and label_lower == element_id.lower():
             score += 45
+        elif element_id and label_lower in element_id.lower():
+            score += 25
     except Exception:
         pass
 

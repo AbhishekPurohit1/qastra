@@ -8,22 +8,45 @@ def open_page(url):
     Args:
         url (str): The URL to navigate to
     """
-    if not driver.page:
-        driver.start()
-    driver.open(url)
-    if driver.page:
-        driver.page.wait_for_load_state("networkidle", timeout=10000)
+    # Check if page is provided from runner
+    import sys
+    page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+    
+    if page:
+        # Use page provided by runner
+        page.goto(url)
+        page.wait_for_load_state("networkidle", timeout=10000)
+    else:
+        # Use driver
+        if not driver.page:
+            driver.start()
+        driver.open(url)
+        if driver.page:
+            driver.page.wait_for_load_state("networkidle", timeout=10000)
 
 
 def click(label):
-    if not driver.page:
-        driver.start()
-    element = find_element(driver.page, label)
-
-    if element:
-        driver.click_element(element)
+    # Check if page is provided from runner
+    import sys
+    page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+    
+    if page:
+        # Use page provided by runner
+        element = find_element(page, label)
+        if element:
+            element.click()
+        else:
+            raise Exception(f"{label} not found")
     else:
-        raise Exception(f"{label} not found")
+        # Use driver
+        if not driver.page:
+            driver.start()
+        element = find_element(driver.page, label)
+
+        if element:
+            driver.click_element(element)
+        else:
+            raise Exception(f"{label} not found")
 
 
 def type_into(label, value):
@@ -33,11 +56,24 @@ def type_into(label, value):
         label (str): The label/locator for the element
         value (str): The text to type
     """
-    if not driver.page:
-        driver.start()
-    element = find_element(driver.page, label)
-
-    if element:
-        driver.type_into(element, value)
+    # Check if page is provided from runner
+    import sys
+    page = sys.modules.get('__main__').globals().get('page') if hasattr(sys.modules.get('__main__'), 'globals') else None
+    
+    if page:
+        # Use page provided by runner
+        element = find_element(page, label)
+        if element:
+            element.fill(value)
+        else:
+            raise Exception(f"{label} not found")
     else:
-        raise Exception(f"{label} not found")
+        # Use driver
+        if not driver.page:
+            driver.start()
+        element = find_element(driver.page, label)
+
+        if element:
+            driver.type_into(element, value)
+        else:
+            raise Exception(f"{label} not found")

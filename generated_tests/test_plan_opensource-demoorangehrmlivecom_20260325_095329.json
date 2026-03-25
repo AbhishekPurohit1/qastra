@@ -1,0 +1,285 @@
+{
+  "page_info": {
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "title": "OrangeHRM",
+    "page_type": "corporate",
+    "complexity_score": 41
+  },
+  "test_statistics": {
+    "total_suggestions": 10,
+    "critical_priority": 3,
+    "high_priority": 2,
+    "categories": 5
+  },
+  "categorized_suggestions": {
+    "authentication": [
+      {
+        "name": "Login Flow Test",
+        "description": "Test user login functionality",
+        "category": "authentication",
+        "priority": "critical",
+        "steps": [
+          "Navigate to login page",
+          "Enter credentials",
+          "Submit form",
+          "Verify login"
+        ],
+        "test_cases": [
+          "Login with valid credentials",
+          "Login with invalid username",
+          "Login with invalid password",
+          "Login with empty fields",
+          "Login with special characters",
+          "Login with SQL injection attempts",
+          "Login session timeout test",
+          "Login after logout"
+        ]
+      },
+      {
+        "name": "Login Flow End-to-End Test",
+        "description": "Test complete login flow user journey",
+        "category": "authentication",
+        "priority": "critical",
+        "flow": "Login Flow"
+      }
+    ],
+    "security": [
+      {
+        "name": "Authentication Security Test",
+        "description": "Test authentication security measures",
+        "category": "security",
+        "priority": "critical",
+        "test_cases": [
+          "Password strength",
+          "Session management",
+          "Login attempts limit",
+          "Logout functionality"
+        ]
+      },
+      {
+        "name": "Input Validation Test",
+        "description": "Test input validation and sanitization",
+        "category": "security",
+        "priority": "high",
+        "test_cases": [
+          "SQL injection prevention",
+          "XSS prevention",
+          "Input length limits",
+          "Special characters"
+        ]
+      }
+    ],
+    "ui": [
+      {
+        "name": "Responsive Design Test",
+        "description": "Test website on different screen sizes",
+        "category": "ui",
+        "priority": "high",
+        "test_cases": [
+          "Mobile view",
+          "Tablet view",
+          "Desktop view",
+          "Orientation changes"
+        ]
+      },
+      {
+        "name": "Browser Compatibility Test",
+        "description": "Test website on different browsers",
+        "category": "ui",
+        "priority": "medium",
+        "test_cases": [
+          "Chrome",
+          "Firefox",
+          "Safari",
+          "Edge"
+        ]
+      },
+      {
+        "name": "Performance Test",
+        "description": "Test website performance metrics",
+        "category": "ui",
+        "priority": "medium",
+        "test_cases": [
+          "Page load time",
+          "Image optimization",
+          "Script loading",
+          "Cache behavior"
+        ]
+      }
+    ],
+    "content": [
+      {
+        "name": "Form Validation Test",
+        "description": "Test general form validation",
+        "category": "content",
+        "priority": "medium",
+        "form_index": 0,
+        "test_cases": [
+          "Form submission with valid data",
+          "Form validation errors",
+          "Form field requirements",
+          "Form file upload",
+          "Form character limits",
+          "Form special characters",
+          "Form duplicate submission",
+          "Form session timeout"
+        ]
+      },
+      {
+        "name": "Corporate Site Test",
+        "description": "Test corporate website functionality",
+        "category": "content",
+        "priority": "medium",
+        "test_cases": [
+          "About page",
+          "Services page",
+          "Contact form",
+          "Team information"
+        ]
+      }
+    ],
+    "general": [
+      {
+        "name": "General Flow End-to-End Test",
+        "description": "Test complete general flow user journey",
+        "category": "general",
+        "priority": "medium",
+        "flow": "General Flow"
+      }
+    ]
+  },
+  "all_suggestions": [
+    {
+      "name": "Login Flow Test",
+      "description": "Test user login functionality",
+      "category": "authentication",
+      "priority": "critical",
+      "steps": [
+        "Navigate to login page",
+        "Enter credentials",
+        "Submit form",
+        "Verify login"
+      ],
+      "test_cases": [
+        "Login with valid credentials",
+        "Login with invalid username",
+        "Login with invalid password",
+        "Login with empty fields",
+        "Login with special characters",
+        "Login with SQL injection attempts",
+        "Login session timeout test",
+        "Login after logout"
+      ]
+    },
+    {
+      "name": "Login Flow End-to-End Test",
+      "description": "Test complete login flow user journey",
+      "category": "authentication",
+      "priority": "critical",
+      "flow": "Login Flow"
+    },
+    {
+      "name": "Authentication Security Test",
+      "description": "Test authentication security measures",
+      "category": "security",
+      "priority": "critical",
+      "test_cases": [
+        "Password strength",
+        "Session management",
+        "Login attempts limit",
+        "Logout functionality"
+      ]
+    },
+    {
+      "name": "Responsive Design Test",
+      "description": "Test website on different screen sizes",
+      "category": "ui",
+      "priority": "high",
+      "test_cases": [
+        "Mobile view",
+        "Tablet view",
+        "Desktop view",
+        "Orientation changes"
+      ]
+    },
+    {
+      "name": "Input Validation Test",
+      "description": "Test input validation and sanitization",
+      "category": "security",
+      "priority": "high",
+      "test_cases": [
+        "SQL injection prevention",
+        "XSS prevention",
+        "Input length limits",
+        "Special characters"
+      ]
+    },
+    {
+      "name": "Form Validation Test",
+      "description": "Test general form validation",
+      "category": "content",
+      "priority": "medium",
+      "form_index": 0,
+      "test_cases": [
+        "Form submission with valid data",
+        "Form validation errors",
+        "Form field requirements",
+        "Form file upload",
+        "Form character limits",
+        "Form special characters",
+        "Form duplicate submission",
+        "Form session timeout"
+      ]
+    },
+    {
+      "name": "Corporate Site Test",
+      "description": "Test corporate website functionality",
+      "category": "content",
+      "priority": "medium",
+      "test_cases": [
+        "About page",
+        "Services page",
+        "Contact form",
+        "Team information"
+      ]
+    },
+    {
+      "name": "General Flow End-to-End Test",
+      "description": "Test complete general flow user journey",
+      "category": "general",
+      "priority": "medium",
+      "flow": "General Flow"
+    },
+    {
+      "name": "Browser Compatibility Test",
+      "description": "Test website on different browsers",
+      "category": "ui",
+      "priority": "medium",
+      "test_cases": [
+        "Chrome",
+        "Firefox",
+        "Safari",
+        "Edge"
+      ]
+    },
+    {
+      "name": "Performance Test",
+      "description": "Test website performance metrics",
+      "category": "ui",
+      "priority": "medium",
+      "test_cases": [
+        "Page load time",
+        "Image optimization",
+        "Script loading",
+        "Cache behavior"
+      ]
+    }
+  ],
+  "recommended_approach": "Focus on navigation, contact forms, and information accessibility. Include responsive design testing.",
+  "metadata": {
+    "generated_at": "2026-03-25T09:53:29.526605",
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "planner_version": "1.0",
+    "analysis_duration": "N/A"
+  }
+}

@@ -7,7 +7,7 @@ setup(
     description="AI-first browser automation framework for Python",
     long_description="Qastra - Test user intent, not selectors. Smart locator engine with self-healing elements.",
     packages=find_packages(),
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     install_requires=[
         "playwright>=1.40.0",
         "click>=8.0.0",
@@ -28,7 +28,6 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",

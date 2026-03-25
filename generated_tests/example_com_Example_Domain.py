@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
 Auto-generated test for Example Domain
-Generated on: 2026-03-25 09:38:41
+Generated on: 2026-03-25 09:44:40
 """
 
 from playwright.sync_api import sync_playwright
 
-def test_example.com_Example_Domain():
+def test_example_com_Example_Domain():
     """Auto-generated test for Example Domain."""
     
     with sync_playwright() as p:
@@ -33,4 +33,4 @@ def test_example.com_Example_Domain():
             browser.close()
 
 if __name__ == "__main__":
-    test_example.com_Example_Domain()
+    test_example_com_Example_Domain()
